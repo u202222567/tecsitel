@@ -1,0 +1,1235 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Tecsitel - Sistema de Gestión Empresarial Integrado con facturación electrónica, contabilidad y cumplimiento normativo">
+    <meta name="author" content="Tecsitel">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="theme-color" content="#dc143c">
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' https: data: 'unsafe-inline' 'unsafe-eval'; img-src 'self' https: data:; connect-src 'self' https://tecsitel-api-f1374ed765a6.herokuapp.com;">
+    
+    <title>Tecsitel - Sistema de Gestión Empresarial</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" href="https://i.imgur.com/6XXdcPR.png">
+    <link rel="apple-touch-icon" href="https://i.imgur.com/6XXdcPR.png">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- Open Graph -->
+    <meta property="og:title" content="Tecsitel - Sistema de Gestión">
+    <meta property="og:description" content="Sistema integral de gestión empresarial">
+    <meta property="og:image" content="https://i.imgur.com/6XXdcPR.png">
+    <meta property="og:url" content="https://tecsitel.netlify.app">
+    <style>
+        /* Critical CSS para loading screen */
+        .loading-screen {
+            display: flex !important;
+            opacity: 1 !important;
+        }
+        .app-container {
+            opacity: 0;
+            display: none;
+        }
+        .app-container.loaded {
+            display: flex;
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <div class="loading-particles">
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <div class="loading-content">
+            <div class="loading-logo">
+                <img src="https://i.imgur.com/6XXdcPR.png" alt="Tecsitel" width="80" height="80">
+                <div class="loading-text">TECSITEL</div>
+            </div>
+            <div class="loading-subtitle">Sistema de Gestión Empresarial</div>
+            <div class="loading-bar">
+                <div class="loading-progress"></div>
+            </div>
+            <div class="loading-status">Cargando módulos...</div>
+        </div>
+    </div>
+
+    <!-- App Container -->
+    <div class="app-container" id="appContainer">
+        <!-- Sidebar -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo" onclick="showTab('dashboard')">
+                    <img src="https://i.imgur.com/6XXdcPR.png" alt="Tecsitel">
+                </div>
+                <h2 class="sidebar-title">TECSITEL</h2>
+                <p class="sidebar-subtitle">Sistema de Gestión v2.0</p>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item active" onclick="showTab('dashboard')" data-tab="dashboard">
+                    <span class="nav-icon">📊</span>
+                    <span class="nav-text">Dashboard</span>
+                </button>
+                <button class="nav-item" onclick="showTab('invoices')" data-tab="invoices">
+                    <span class="nav-icon">📄</span>
+                    <span class="nav-text">Facturas</span>
+                </button>
+                <button class="nav-item" onclick="showTab('accounting')" data-tab="accounting">
+                    <span class="nav-icon">💰</span>
+                    <span class="nav-text">Contabilidad</span>
+                </button>
+                <button class="nav-item" onclick="showTab('compliance')" data-tab="compliance">
+                    <span class="nav-icon">⚖️</span>
+                    <span class="nav-text">Cumplimiento</span>
+                </button>
+                <button class="nav-item" onclick="showTab('timetracking')" data-tab="timetracking">
+                    <span class="nav-icon">⏰</span>
+                    <span class="nav-text">Control Horarios</span>
+                </button>
+                <button class="nav-item" onclick="showTab('sharepoint')" data-tab="sharepoint">
+                    <span class="nav-icon">☁️</span>
+                    <span class="nav-text">Respaldos</span>
+                </button>
+            </nav>
+            <button class="sidebar-close" onclick="closeSidebar()">×</button>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="header">
+                <div class="header-left">
+                    <button class="menu-toggle" onclick="toggleSidebar()">☰</button>
+                    <div class="header-info">
+                        <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                        <div class="breadcrumb">Inicio › <span id="breadcrumb">Dashboard</span></div>
+                    </div>
+                </div>
+                <div class="header-right">
+                    <button class="notification-btn" onclick="showNotifications()">
+                        <span class="notification-icon">🔔</span>
+                        <span class="notification-badge">3</span>
+                    </button>
+                    <div class="user-menu" onclick="showUserMenu()">
+                        <div class="user-avatar">A</div>
+                        <div class="user-info">
+                            <div class="user-name">Admin</div>
+                            <div class="user-status">Activo</div>
+                        </div>
+                    </div>
+                </div>
+            </header>
+
+            <!-- Content Area -->
+            <div class="content">
+                <!-- Dashboard Tab -->
+                <div id="dashboard" class="tab-content active">
+                    <div class="stats-grid">
+                        <div class="stat-card" onclick="showTab('invoices')">
+                            <div class="stat-header">
+                                <div class="stat-info">
+                                    <div class="stat-value" id="totalIncome">S/ 0.00</div>
+                                    <div class="stat-label">Ingresos del Mes</div>
+                                    <div class="stat-trend trend-up">↑ 12.5% vs mes anterior</div>
+                                </div>
+                                <div class="stat-icon" style="background: rgba(220,20,60,0.1); color: var(--primary);">
+                                    💰
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-info">
+                                    <div class="stat-value" id="totalExpenses">S/ 0.00</div>
+                                    <div class="stat-label">Egresos del Mes</div>
+                                    <div class="stat-trend trend-down">↓ 5.2% vs mes anterior</div>
+                                </div>
+                                <div class="stat-icon" style="background: rgba(245,158,11,0.1); color: var(--warning);">
+                                    💳
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card" onclick="showTab('accounting')">
+                            <div class="stat-header">
+                                <div class="stat-info">
+                                    <div class="stat-value" id="netBalance">S/ 0.00</div>
+                                    <div class="stat-label">Saldo Neto</div>
+                                    <div class="stat-trend trend-up">↑ 8.7% margen de utilidad</div>
+                                </div>
+                                <div class="stat-icon" style="background: rgba(16,185,129,0.1); color: var(--success);">
+                                    📈
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="stat-card">
+                            <div class="stat-header">
+                                <div class="stat-info">
+                                    <div class="stat-value" id="pendingInvoices">0</div>
+                                    <div class="stat-label">Facturas Pendientes</div>
+                                    <div class="progress">
+                                        <div class="progress-bar" style="width: 25%;"></div>
+                                    </div>
+                                </div>
+                                <div class="stat-icon" style="background: rgba(59,130,246,0.1); color: var(--info);">
+                                    📋
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3 class="panel-title">📊 Actividad Reciente</h3>
+                            <button class="btn btn-primary" onclick="showModal('newInvoice')">
+                                <span class="btn-icon">➕</span>
+                                <span class="btn-text">Nueva Factura</span>
+                            </button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-info">
+                                <span class="alert-icon">ℹ️</span>
+                                <div class="alert-content">
+                                    <strong>Sistema Actualizado</strong>
+                                    Cumpliendo con normativas SUNAT, SUNAFIL y MINTRA. API conectada en Heroku.
+                                </div>
+                            </div>
+                            <div class="table-responsive">
+                                <table class="table" id="activityTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Fecha</th>
+                                            <th>Tipo</th>
+                                            <th>Descripción</th>
+                                            <th>Monto</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="5" style="text-align: center; color: var(--gray-600);">
+                                                No hay actividad registrada
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="quick-actions">
+                        <div class="action-card" onclick="showModal('newInvoice')">
+                            <div class="action-icon">➕</div>
+                            <div class="action-title">Nueva Factura</div>
+                            <div class="action-desc">Crear comprobante</div>
+                        </div>
+                        <div class="action-card" onclick="showModal('registerPayment')">
+                            <div class="action-icon">💵</div>
+                            <div class="action-title">Registrar Cobro</div>
+                            <div class="action-desc">Ingresar pago</div>
+                        </div>
+                        <div class="action-card" onclick="exportInvoices()">
+                            <div class="action-icon">📤</div>
+                            <div class="action-title">Exportar Datos</div>
+                            <div class="action-desc">Descargar CSV</div>
+                        </div>
+                        <div class="action-card" onclick="showTab('compliance')">
+                            <div class="action-icon">⚖️</div>
+                            <div class="action-title">Cumplimiento</div>
+                            <div class="action-desc">Ver estado</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Invoices Tab -->
+                <div id="invoices" class="tab-content">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3 class="panel-title">📄 Gestión de Facturas</h3>
+                            <div class="panel-actions">
+                                <button class="btn btn-secondary" onclick="exportInvoices()">
+                                    <span class="btn-icon">📤</span>
+                                    <span class="btn-text hide-mobile">Exportar</span>
+                                </button>
+                                <button class="btn btn-primary" onclick="showModal('newInvoice')">
+                                    <span class="btn-icon">➕</span>
+                                    <span class="btn-text">Nueva Factura</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table" id="invoicesTable">
+                                    <thead>
+                                        <tr>
+                                            <th>N° Factura</th>
+                                            <th>Cliente</th>
+                                            <th class="hide-mobile">RUC</th>
+                                            <th>Subtotal</th>
+                                            <th class="hide-mobile">IGV</th>
+                                            <th>Total</th>
+                                            <th>Estado</th>
+                                            <th>Acciones</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td colspan="8" style="text-align: center; color: var(--gray-600);">
+                                                No hay facturas registradas
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Accounting Tab -->
+                <div id="accounting" class="tab-content">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3 class="panel-title">💰 Estado de Situación Financiera</h3>
+                            <button class="btn btn-secondary" onclick="printFinancialReport()">
+                                <span class="btn-icon">🖨️</span>
+                                <span class="btn-text">Imprimir</span>
+                            </button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="balance-sheet">
+                                <div class="balance-section">
+                                    <h4>ACTIVOS</h4>
+                                    <div class="balance-item">
+                                        <span>Efectivo y Bancos</span>
+                                        <span id="cashBalance">S/ 0.00</span>
+                                    </div>
+                                    <div class="balance-item">
+                                        <span>Cuentas por Cobrar</span>
+                                        <span id="receivables">S/ 0.00</span>
+                                    </div>
+                                    <div class="balance-item">
+                                        <span>Inventario</span>
+                                        <span>S/ 0.00</span>
+                                    </div>
+                                    <div class="balance-total">
+                                        <span>Total Activos</span>
+                                        <span id="totalAssets">S/ 0.00</span>
+                                    </div>
+                                </div>
+
+                                <div class="balance-section">
+                                    <h4>PASIVOS</h4>
+                                    <div class="balance-item">
+                                        <span>Cuentas por Pagar</span>
+                                        <span>S/ 0.00</span>
+                                    </div>
+                                    <div class="balance-item">
+                                        <span>Impuestos por Pagar</span>
+                                        <span id="taxesPayable">S/ 0.00</span>
+                                    </div>
+                                    <div class="balance-total">
+                                        <span>Total Pasivos</span>
+                                        <span id="totalLiabilities">S/ 0.00</span>
+                                    </div>
+                                </div>
+
+                                <div class="balance-section">
+                                    <h4>PATRIMONIO</h4>
+                                    <div class="balance-item">
+                                        <span>Capital Social</span>
+                                        <span>S/ 200,000.00</span>
+                                    </div>
+                                    <div class="balance-item">
+                                        <span>Utilidades Retenidas</span>
+                                        <span id="retainedEarnings">S/ 0.00</span>
+                                    </div>
+                                    <div class="balance-total">
+                                        <span>Total Patrimonio</span>
+                                        <span id="totalEquity">S/ 200,000.00</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel mt-4">
+                        <div class="panel-header">
+                            <h3 class="panel-title">📊 Estado de Resultados</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="balance-section">
+                                <div class="balance-item">
+                                    <span>Ingresos por Ventas</span>
+                                    <span id="salesRevenue">S/ 0.00</span>
+                                </div>
+                                <div class="balance-item">
+                                    <span>(-) Costo de Ventas</span>
+                                    <span id="costOfSales">S/ 0.00</span>
+                                </div>
+                                <div class="balance-item" style="font-weight: 600;">
+                                    <span>Utilidad Bruta</span>
+                                    <span id="grossProfit">S/ 0.00</span>
+                                </div>
+                                <div class="balance-item">
+                                    <span>(-) Gastos Operativos</span>
+                                    <span id="operatingExpenses">S/ 0.00</span>
+                                </div>
+                                <div class="balance-item">
+                                    <span>(-) Gastos Administrativos</span>
+                                    <span id="adminExpenses">S/ 0.00</span>
+                                </div>
+                                <div class="balance-total">
+                                    <span>Utilidad Neta</span>
+                                    <span id="netProfit">S/ 0.00</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Compliance Tab -->
+                <div id="compliance" class="tab-content">
+                    <div class="compliance-grid">
+                        <div class="compliance-card">
+                            <div class="compliance-header">
+                                <div class="compliance-icon" style="background: rgba(16,185,129,0.1);">🏛️</div>
+                                <div class="compliance-info">
+                                    <h3>SUNAT</h3>
+                                    <p>Superintendencia Nacional</p>
+                                </div>
+                            </div>
+                            <div class="compliance-list">
+                                <div class="compliance-item">
+                                    <div class="check-icon" style="background: var(--success);">✓</div>
+                                    <span>Facturación Electrónica 3.0</span>
+                                </div>
+                                <div class="compliance-item">
+                                    <div class="check-icon" style="background: var(--success);">✓</div>
+                                    <span>Libros Electrónicos al día</span>
+                                </div>
+                                <div class="compliance-item">
+                                    <div class="check-icon" style="background: var(--warning);">!</div>
+                                    <span>PDT 621 - Vence 15/07</span>
+                                </div>
+                            </div>
+                            <div class="compliance-progress">
+                                <div class="progress-header">
+                                    <span>Cumplimiento</span>
+                                    <strong>95%</strong>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 95%; background: var(--success);"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="compliance-card">
+                            <div class="compliance-header">
+                                <div class="compliance-icon" style="background: rgba(59,130,246,0.1);">⚖️</div>
+                                <div class="compliance-info">
+                                    <h3>SUNAFIL</h3>
+                                    <p>Fiscalización Laboral</p>
+                                </div>
+                            </div>
+                            <div class="compliance-list">
+                                <div class="compliance-item">
+                                    <div class="check-icon" style="background: var(--success);">✓</div>
+                                    <span>T-REGISTRO actualizado</span>
+                                </div>
+                                <div class="compliance-item">
+                                    <div class="check-icon" style="background: var(--success);">✓</div>
+                                    <span>Control de asistencia digital</span>
+                                </div>
+                                <div class="compliance-item">
+                                    <div class="check-icon" style="background: var(--success);">✓</div>
+                                    <span>SCTR vigente</span>
+                                </div>
+                            </div>
+                            <div class="compliance-progress">
+                                <div class="progress-header">
+                                    <span>Cumplimiento</span>
+                                    <strong>100%</strong>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 100%; background: var(--success);"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="compliance-card">
+                            <div class="compliance-header">
+                                <div class="compliance-icon" style="background: rgba(245,158,11,0.1);">📋</div>
+                                <div class="compliance-info">
+                                    <h3>MINTRA</h3>
+                                    <p>Ministerio de Trabajo</p>
+                                </div>
+                            </div>
+                            <div class="compliance-list">
+                                <div class="compliance-item">
+                                    <div class="check-icon" style="background: var(--success);">✓</div>
+                                    <span>Contratos registrados</span>
+                                </div>
+                                <div class="compliance-item">
+                                    <div class="check-icon" style="background: var(--success);">✓</div>
+                                    <span>Planilla electrónica PLAME</span>
+                                </div>
+                                <div class="compliance-item">
+                                    <div class="check-icon" style="background: var(--warning);">!</div>
+                                    <span>CTS - Próximo depósito</span>
+                                </div>
+                            </div>
+                            <div class="compliance-progress">
+                                <div class="progress-header">
+                                    <span>Cumplimiento</span>
+                                    <strong>85%</strong>
+                                </div>
+                                <div class="progress">
+                                    <div class="progress-bar" style="width: 85%; background: var(--warning);"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3 class="panel-title">📅 Calendario de Obligaciones</h3>
+                            <button class="btn btn-primary">
+                                <span class="btn-icon">➕</span>
+                                <span class="btn-text">Nueva Obligación</span>
+                            </button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Obligación</th>
+                                            <th>Entidad</th>
+                                            <th>Vencimiento</th>
+                                            <th class="hide-mobile">Monto</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>PDT 621 - IGV Renta</td>
+                                            <td>SUNAT</td>
+                                            <td>15/07/2025</td>
+                                            <td class="hide-mobile">S/ 12,340.00</td>
+                                            <td><span class="badge badge-warning">⏳ Pendiente</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>Planilla Mensual</td>
+                                            <td>MINTRA</td>
+                                            <td>30/06/2025</td>
+                                            <td class="hide-mobile">S/ 45,200.00</td>
+                                            <td><span class="badge badge-success">✓ Presentado</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>CTS Mayo</td>
+                                            <td>MINTRA</td>
+                                            <td>15/11/2025</td>
+                                            <td class="hide-mobile">S/ 18,500.00</td>
+                                            <td><span class="badge badge-info">📅 Programado</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Time Tracking Tab (Control de Horarios SUNAFIL) -->
+                <div id="timetracking" class="tab-content">
+                    <div class="alert alert-warning mb-4">
+                        <span class="alert-icon">⚠️</span>
+                        <div class="alert-content">
+                            <strong>Cumplimiento SUNAFIL - D.S. N° 004-2006-TR</strong>
+                            El registro de control de asistencia es obligatorio. Las marcaciones tienen carácter de declaración jurada.
+                        </div>
+                    </div>
+
+                    <div class="stats-grid">
+                        <div class="stat-card mini">
+                            <div class="stat-header">
+                                <div class="stat-info">
+                                    <div class="stat-value">12</div>
+                                    <div class="stat-label">Total Colaboradores</div>
+                                    <div class="progress mt-2">
+                                        <div class="progress-bar" style="width: 100%;"></div>
+                                    </div>
+                                </div>
+                                <div class="stat-icon" style="background: rgba(59,130,246,0.1); color: var(--info);">
+                                    👥
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stat-card mini">
+                            <div class="stat-header">
+                                <div class="stat-info">
+                                    <div class="stat-value">9</div>
+                                    <div class="stat-label">Presentes Hoy</div>
+                                    <div class="progress mt-2">
+                                        <div class="progress-bar" style="width: 75%; background: var(--warning);"></div>
+                                    </div>
+                                </div>
+                                <div class="stat-icon" style="background: rgba(16,185,129,0.1); color: var(--success);">
+                                    ✓
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stat-card mini">
+                            <div class="stat-header">
+                                <div class="stat-info">
+                                    <div class="stat-value">2,016</div>
+                                    <div class="stat-label">Horas Trabajadas (Mes)</div>
+                                    <div class="stat-trend trend-up">↑ 5% productividad</div>
+                                </div>
+                                <div class="stat-icon" style="background: rgba(245,158,11,0.1); color: var(--warning);">
+                                    ⏰
+                                </div>
+                            </div>
+                        </div>
+                        <div class="stat-card mini">
+                            <div class="stat-header">
+                                <div class="stat-info">
+                                    <div class="stat-value">48</div>
+                                    <div class="stat-label">Horas Extra (Mes)</div>
+                                    <div class="stat-trend">Dentro del límite legal</div>
+                                </div>
+                                <div class="stat-icon" style="background: rgba(220,20,60,0.1); color: var(--primary);">
+                                    ⏱️
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3 class="panel-title">⏰ Control de Asistencia Digital - Hoy ${new Date().toLocaleDateString('es-PE')}</h3>
+                            <div class="panel-actions">
+                                <button class="btn btn-secondary" onclick="exportTRegistro()">
+                                    <span class="btn-icon">📊</span>
+                                    <span class="btn-text hide-mobile">T-REGISTRO</span>
+                                </button>
+                                <button class="btn btn-primary" onclick="showModal('timeEntry')">
+                                    <span class="btn-icon">➕</span>
+                                    <span class="btn-text">Nueva Marcación</span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table" id="timeTrackingTable">
+                                    <thead>
+                                        <tr>
+                                            <th>Trabajador</th>
+                                            <th class="hide-mobile">DNI</th>
+                                            <th>Entrada</th>
+                                            <th>Refrigerio</th>
+                                            <th>Salida</th>
+                                            <th class="hide-mobile">Horas</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>
+                                                <div class="employee-info">
+                                                    <div class="employee-avatar" style="background: #e0f2fe; color: #0284c7;">JP</div>
+                                                    <div class="employee-details">
+                                                        <div class="employee-name">Juan Pérez García</div>
+                                                        <div class="employee-role hide-mobile">Técnico Senior</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="hide-mobile">48756231</td>
+                                            <td><span class="badge badge-success">08:00</span></td>
+                                            <td>13:00-14:00</td>
+                                            <td><span class="badge badge-success">18:30</span></td>
+                                            <td class="hide-mobile"><strong>9.5h</strong></td>
+                                            <td><span class="badge badge-success">✓ Completo</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="employee-info">
+                                                    <div class="employee-avatar" style="background: #fce7f3; color: #ec4899;">MR</div>
+                                                    <div class="employee-details">
+                                                        <div class="employee-name">María Rodríguez</div>
+                                                        <div class="employee-role hide-mobile">Administrativa</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="hide-mobile">71234567</td>
+                                            <td><span class="badge badge-warning">08:15</span></td>
+                                            <td>13:00-14:00</td>
+                                            <td>--:--</td>
+                                            <td class="hide-mobile"><strong>5.25h</strong></td>
+                                            <td><span class="badge badge-warning">⚠️ En jornada</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>
+                                                <div class="employee-info">
+                                                    <div class="employee-avatar" style="background: #f0fdf4; color: #16a34a;">CR</div>
+                                                    <div class="employee-details">
+                                                        <div class="employee-name">Carlos Ramírez</div>
+                                                        <div class="employee-role hide-mobile">Supervisor</div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                            <td class="hide-mobile">42156789</td>
+                                            <td>--:--</td>
+                                            <td>--:--</td>
+                                            <td>--:--</td>
+                                            <td class="hide-mobile"><strong>0h</strong></td>
+                                            <td><span class="badge badge-danger">❌ Ausente</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel mt-4">
+                        <div class="panel-header">
+                            <h3 class="panel-title">📊 Resumen Mensual - PLAME</h3>
+                            <button class="btn btn-secondary" onclick="generatePLAME()">
+                                <span class="btn-icon">📄</span>
+                                <span class="btn-text">Generar PLAME</span>
+                            </button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="compliance-grid">
+                                <div class="balance-section">
+                                    <h4>Estadísticas del Mes</h4>
+                                    <div class="balance-item">
+                                        <span>Total Horas Normales</span>
+                                        <span>2,016 horas</span>
+                                    </div>
+                                    <div class="balance-item">
+                                        <span>Total Horas Extra 25%</span>
+                                        <span>32 horas</span>
+                                    </div>
+                                    <div class="balance-item">
+                                        <span>Total Horas Extra 35%</span>
+                                        <span>16 horas</span>
+                                    </div>
+                                    <div class="balance-item">
+                                        <span>Tardanzas Registradas</span>
+                                        <span>12 eventos</span>
+                                    </div>
+                                    <div class="balance-item">
+                                        <span>Faltas Injustificadas</span>
+                                        <span>2 días</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SharePoint Tab -->
+                <div id="sharepoint" class="tab-content">
+                    <div class="panel">
+                        <div class="panel-header">
+                            <h3 class="panel-title">☁️ Sistema de Respaldos (Mock)</h3>
+                            <button class="btn btn-primary" onclick="connectSharePoint()">
+                                <span class="btn-icon">🔗</span>
+                                <span class="btn-text">Configurar Respaldo</span>
+                            </button>
+                        </div>
+                        <div class="panel-body">
+                            <div class="alert alert-info mb-4">
+                                <span class="alert-icon">ℹ️</span>
+                                <div class="alert-content">
+                                    <strong>Respaldo Automático Simulado</strong>
+                                    Este es un sistema de respaldo simulado. En producción se conectaría con SharePoint real.
+                                </div>
+                            </div>
+                            
+                            <div id="sharePointStatus"></div>
+                            
+                            <div class="form-group">
+                                <label class="form-label">URL del Servidor de Respaldo</label>
+                                <input type="url" class="form-input" id="sharepointUrl" 
+                                       placeholder="https://backup.tecsitel.com/documentos">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Carpeta de Destino</label>
+                                <input type="text" class="form-input" id="sharepointFolder" 
+                                       placeholder="/Respaldos/Tecsitel">
+                            </div>
+                            <div class="form-group">
+                                <label class="form-label">Frecuencia de Respaldo</label>
+                                <select class="form-input">
+                                    <option value="daily">Diario (2:00 AM)</option>
+                                    <option value="weekly" selected>Semanal (Domingos)</option>
+                                    <option value="monthly">Mensual (Día 1)</option>
+                                    <option value="manual">Manual</option>
+                                </select>
+                            </div>
+                            <div class="btn-group">
+                                <button class="btn btn-success" onclick="testSharePointConnection()">
+                                    <span class="btn-icon">🧪</span>
+                                    <span class="btn-text">Probar Conexión</span>
+                                </button>
+                                <button class="btn btn-secondary" onclick="showBackupHistory()">
+                                    <span class="btn-icon">📋</span>
+                                    <span class="btn-text">Ver Historial</span>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="panel mt-4">
+                        <div class="panel-header">
+                            <h3 class="panel-title">📦 Archivos Respaldados</h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>Archivo</th>
+                                            <th>Tamaño</th>
+                                            <th>Fecha</th>
+                                            <th>Estado</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>📄 facturas_2025_06.zip</td>
+                                            <td>2.5 MB</td>
+                                            <td>27/06/2025</td>
+                                            <td><span class="badge badge-success">✓ Respaldado</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>📊 reportes_financieros.xlsx</td>
+                                            <td>1.8 MB</td>
+                                            <td>26/06/2025</td>
+                                            <td><span class="badge badge-success">✓ Respaldado</span></td>
+                                        </tr>
+                                        <tr>
+                                            <td>📋 t_registro_junio.txt</td>
+                                            <td>156 KB</td>
+                                            <td>25/06/2025</td>
+                                            <td><span class="badge badge-success">✓ Respaldado</span></td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Bottom Navigation (Mobile) -->
+        <nav class="bottom-nav">
+            <button class="bottom-nav-item active" onclick="showTab('dashboard')" data-tab="dashboard">
+                <span class="bottom-nav-icon">📊</span>
+                <span class="bottom-nav-text">Inicio</span>
+            </button>
+            <button class="bottom-nav-item" onclick="showTab('invoices')" data-tab="invoices">
+                <span class="bottom-nav-icon">📄</span>
+                <span class="bottom-nav-text">Facturas</span>
+            </button>
+            <button class="bottom-nav-item" onclick="showTab('accounting')" data-tab="accounting">
+                <span class="bottom-nav-icon">💰</span>
+                <span class="bottom-nav-text">Finanzas</span>
+            </button>
+            <button class="bottom-nav-item" onclick="showTab('compliance')" data-tab="compliance">
+                <span class="bottom-nav-icon">⚖️</span>
+                <span class="bottom-nav-text">Legal</span>
+            </button>
+            <button class="bottom-nav-item" onclick="showMoreOptions()">
+                <span class="bottom-nav-icon">⋯</span>
+                <span class="bottom-nav-text">Más</span>
+            </button>
+        </nav>
+    </div>
+
+    <!-- Modal Time Entry (Marcación SUNAFIL) -->
+    <div class="modal" id="timeEntryModal">
+        <div class="modal-overlay" onclick="closeModal('timeEntryModal')"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>⏰ Registrar Marcación - Control de Asistencia</h3>
+                <button class="modal-close" onclick="closeModal('timeEntryModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-warning mb-4">
+                    <span class="alert-icon">⚖️</span>
+                    <div class="alert-content">
+                        <strong>Declaración Jurada</strong>
+                        Este registro tiene carácter de declaración jurada según D.S. N° 004-2006-TR. 
+                        Falsear información está sujeto a sanciones administrativas y penales.
+                    </div>
+                </div>
+
+                <form id="timeEntryForm" data-allow-submit onsubmit="saveTimeEntry(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">DNI del Trabajador <span>*</span></label>
+                            <input type="text" class="form-input" id="employeeDni" 
+                                   pattern="[0-9]{8}" maxlength="8" required
+                                   placeholder="12345678" title="Ingrese 8 dígitos">
+                            <div class="form-hint">Documento Nacional de Identidad</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Tipo de Marcación <span>*</span></label>
+                            <select class="form-input" id="entryType" required>
+                                <option value="">Seleccione...</option>
+                                <option value="entrada">Entrada</option>
+                                <option value="inicio_refrigerio">Inicio de Refrigerio</option>
+                                <option value="fin_refrigerio">Fin de Refrigerio</option>
+                                <option value="salida">Salida</option>
+                                <option value="entrada_extra">Entrada Horas Extra</option>
+                                <option value="salida_extra">Salida Horas Extra</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Fecha <span>*</span></label>
+                            <input type="date" class="form-input" id="entryDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Hora <span>*</span></label>
+                            <input type="time" class="form-input" id="entryTime" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Ubicación/Modalidad <span>*</span></label>
+                        <select class="form-input" id="entryLocation" required>
+                            <option value="oficina">Oficina Principal</option>
+                            <option value="campo">Trabajo de Campo</option>
+                            <option value="remoto">Trabajo Remoto</option>
+                            <option value="cliente">En Cliente</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Observaciones</label>
+                        <textarea class="form-input form-textarea" id="entryNotes" rows="2" 
+                                  placeholder="Justificación en caso de tardanza o situación especial"></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="checkbox-container">
+                            <input type="checkbox" required>
+                            <span class="checkbox-text">
+                                Declaro bajo juramento que la información registrada es verdadera y 
+                                corresponde a mi marcación real de asistencia.
+                            </span>
+                        </label>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('timeEntryModal')">
+                    Cancelar
+                </button>
+                <button class="btn btn-primary" onclick="saveTimeEntry(event)">
+                    <span class="btn-icon">✓</span>
+                    <span class="btn-text">Registrar Marcación</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Nueva Factura -->
+    <div class="modal" id="newInvoiceModal">
+    <div class="modal" id="newInvoiceModal">
+        <div class="modal-overlay" onclick="closeModal('newInvoiceModal')"></div>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Nueva Factura Electrónica</h3>
+                <button class="modal-close" onclick="closeModal('newInvoiceModal')">×</button>
+            </div>
+            <div class="modal-body">
+                <form id="invoiceForm" data-allow-submit onsubmit="saveInvoice(event)">
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">RUC Cliente <span>*</span></label>
+                            <input type="text" class="form-input" id="clientRuc" 
+                                   pattern="[0-9]{11}" maxlength="11" required
+                                   placeholder="20100055237" title="Ingrese 11 dígitos">
+                            <div class="form-hint">Ej: 20100055237 (Claro)</div>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Razón Social <span>*</span></label>
+                            <input type="text" class="form-input" id="clientName" 
+                                   required placeholder="Nombre del cliente">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Descripción del Producto/Servicio <span>*</span></label>
+                        <textarea class="form-input form-textarea" id="description" rows="3" 
+                                  required placeholder="Detalle los productos o servicios prestados"></textarea>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Monto sin IGV <span>*</span></label>
+                            <input type="number" class="form-input" id="amount" 
+                                   step="0.01" min="0.01" required placeholder="0.00"
+                                   onchange="calculateTotal()">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">IGV (%) <span>*</span></label>
+                            <input type="number" class="form-input" id="igvRate" 
+                                   step="0.01" min="0" max="100" value="18" 
+                                   required onchange="calculateTotal()">
+                            <div class="form-hint">Personalizable: 0%, 10%, 18%</div>
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Monto IGV</label>
+                            <input type="text" class="form-input" id="igvAmount" 
+                                   readonly style="background: var(--gray-100);">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Total con IGV</label>
+                            <input type="text" class="form-input" id="totalAmount" 
+                                   readonly style="font-weight: bold; background: var(--gray-100);">
+                        </div>
+                    </div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">Fecha de Emisión <span>*</span></label>
+                            <input type="date" class="form-input" id="issueDate" required>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Fecha de Vencimiento <span>*</span></label>
+                            <input type="date" class="form-input" id="dueDate" required>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Adjuntar Factura Física (PDF)</label>
+                        <div class="file-upload" onclick="document.getElementById('invoiceFile').click()"
+                             ondrop="handleDrop(event)" ondragover="handleDragOver(event)"
+                             ondragleave="handleDragLeave(event)">
+                            <input type="file" id="invoiceFile" accept=".pdf" 
+                                   style="display: none;" onchange="handleFileSelect(event)">
+                            <div class="file-upload-icon">📎</div>
+                            <div class="file-upload-text">Arrastra el archivo aquí o haz clic para seleccionar</div>
+                            <div class="file-upload-hint">Solo archivos PDF (máx. 10MB)</div>
+                        </div>
+                        <div class="file-list" id="fileList"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" onclick="closeModal('newInvoiceModal')">
+                    Cancelar
+                </button>
+                <button class="btn btn-primary" onclick="saveInvoice(event)">
+                    <span class="btn-icon">💾</span>
+                    <span class="btn-text">Guardar y Enviar a SUNAT</span>
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
+
+    <!-- Scripts -->
+    <script src="script.js"></script>
+    
+    <!-- Fallback inline script -->
+    <script>
+        console.log('Fallback script cargado');
+        // Fallback directo para asegurar que el loading screen se oculte
+        window.addEventListener('DOMContentLoaded', function() {
+            console.log('DOMContentLoaded en fallback');
+            setTimeout(function() {
+                var loadingScreen = document.getElementById('loadingScreen');
+                var appContainer = document.getElementById('appContainer');
+                console.log('Elementos encontrados:', {loading: !!loadingScreen, app: !!appContainer});
+                if (loadingScreen && appContainer) {
+                    loadingScreen.style.opacity = '0';
+                    appContainer.style.display = 'flex';
+                    setTimeout(function() {
+                        appContainer.classList.add('loaded');
+                        loadingScreen.style.display = 'none';
+                        console.log('Loading screen ocultado por fallback');
+                    }, 100);
+                }
+            }, 3000);
+        });
+        
+        // Timeout de emergencia absoluto
+        setTimeout(function() {
+            var ls = document.getElementById('loadingScreen');
+            var ac = document.getElementById('appContainer');
+            if (ls && ls.style.display !== 'none') {
+                console.warn('Forzando cierre de emergencia del loading screen');
+                ls.style.display = 'none';
+                if (ac) {
+                    ac.style.display = 'flex';
+                    ac.style.opacity = '1';
+                }
+            }
+        }, 6000);
+    </script>
+    
+    <!-- Fallback para ocultar loading si JavaScript está deshabilitado -->
+    <noscript>
+        <style>
+            .loading-screen { display: none !important; }
+            .app-container { display: flex !important; opacity: 1 !important; }
+        </style>
+    </noscript>
+    
+    <!-- Funciones adicionales para mockups -->
+    <script>
+        // Funciones específicas para demos y mockups
+        function showNotifications() {
+            showToast('📬 Tienes 3 notificaciones pendientes', 'info');
+        }
+        
+        function showUserMenu() {
+            const options = confirm('¿Desea cerrar sesión?');
+            if (options) {
+                showToast('👋 Sesión cerrada', 'info');
+                setTimeout(() => location.reload(), 1000);
+            }
+        }
+        
+        function showMoreOptions() {
+            showToast('📱 Desliza hacia arriba para más opciones', 'info');
+        }
+        
+        function showBackupHistory() {
+            showToast('📋 Mostrando historial de respaldos', 'info');
+        }
+        
+        // Funciones de Control de Horarios SUNAFIL
+        function saveTimeEntry(event) {
+            event.preventDefault();
+            
+            const dni = document.getElementById('employeeDni').value;
+            const type = document.getElementById('entryType').value;
+            const date = document.getElementById('entryDate').value;
+            const time = document.getElementById('entryTime').value;
+            const location = document.getElementById('entryLocation').value;
+            const notes = document.getElementById('entryNotes').value;
+            
+            // Validar DNI
+            if (!/^\d{8}$/.test(dni)) {
+                showToast('❌ DNI debe tener 8 dígitos', 'error');
+                return;
+            }
+            
+            // Guardar marcación
+            const entry = {
+                id: Date.now(),
+                dni,
+                type,
+                datetime: `${date} ${time}`,
+                location,
+                notes,
+                createdAt: new Date().toISOString()
+            };
+            
+            // Simular guardado
+            showToast('✅ Marcación registrada correctamente', 'success');
+            
+            // Simular envío a SUNAFIL
+            setTimeout(() => {
+                showToast('📤 Sincronizando con T-REGISTRO SUNAFIL...', 'info');
+                setTimeout(() => {
+                    showToast('✅ Marcación enviada a SUNAFIL', 'success');
+                }, 1500);
+            }, 1000);
+            
+            // Limpiar formulario y cerrar modal
+            document.getElementById('timeEntryForm').reset();
+            closeModal('timeEntryModal');
+            
+            // Actualizar tabla si estamos en la pestaña de horarios
+            if (AppState.currentTab === 'timetracking') {
+                updateTimeTrackingTable();
+            }
+        }
+        
+        function exportTRegistro() {
+            if (confirm('¿Generar archivo T-REGISTRO para SUNAFIL?\n\nPeríodo: ' + new Date().toLocaleDateString('es-PE', { month: 'long', year: 'numeric' }) + '\nTrabajadores: 12\nRegistros: 264')) {
+                showToast('📊 Generando T-REGISTRO...', 'info');
+                
+                setTimeout(() => {
+                    // Simular generación del archivo
+                    const filename = `TRegistro_${new Date().toISOString().slice(0,7).replace('-','')}.txt`;
+                    showToast(`✅ Archivo ${filename} generado correctamente`, 'success');
+                    
+                    // Simular descarga
+                    setTimeout(() => {
+                        showToast(`📥 Descargando ${filename}`, 'info');
+                    }, 1000);
+                }, 2000);
+            }
+        }
+        
+        function generatePLAME() {
+            showToast('📄 Generando archivo PLAME...', 'info');
+            
+            setTimeout(() => {
+                showToast('✅ PLAME generado correctamente', 'success');
+                showToast('📥 Descargando rem_202506.pla', 'info');
+            }, 2000);
+        }
+        
+        function updateTimeTrackingTable() {
+            // Actualizar tabla de marcaciones
+            const table = document.getElementById('timeTrackingTable');
+            if (table) {
+                showToast('🔄 Actualizando registros...', 'info');
+            }
+        }
+        
+        // Inicializar con datos de demo si está vacío
+        window.addEventListener('DOMContentLoaded', function() {
+            // Configurar fechas por defecto
+            const today = new Date().toISOString().split('T')[0];
+            const timeInputs = document.querySelectorAll('#entryDate');
+            timeInputs.forEach(input => {
+                if (!input.value) input.value = today;
+            });
+            
+            const now = new Date();
+            const currentTime = `${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+            const timeInput = document.querySelector('#entryTime');
+            if (timeInput && !timeInput.value) {
+                timeInput.value = currentTime;
+            }
+            
+            setTimeout(() => {
+                if (AppState.invoices.length === 0) {
+                    console.log('Sistema vacío detectado. Use TecsitelAPI.generateTestData() para generar datos de prueba.');
+                }
+            }, 2000);
+        });
+    </script>
+</body>
+</html>
