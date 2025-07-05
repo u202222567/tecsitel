@@ -15,141 +15,60 @@
            Variables y Base
         =========================== */
         :root {
-            --primary: #dc143c;
-            --primary-dark: #a3102d;
-            --white: #ffffff;
-            --dark: #1f2937;
-            --gray-100: #f9fafb;
-            --gray-300: #d1d5db;
-            --gray-600: #4b5563;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --info: #3b82f6;
-            --success-alpha: rgba(16, 185, 129, 0.1);
-            --warning-alpha: rgba(245, 158, 11, 0.1);
-            --danger-alpha: rgba(239, 68, 68, 0.1);
-            --info-alpha: rgba(59, 130, 246, 0.1);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-            --shadow-2xl: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
-            --radius: 8px;
-            --radius-2xl: 24px;
-            --transition: 300ms ease;
-            --transition-slow: 500ms ease;
+            --primary: #dc143c; --primary-dark: #a3102d; --white: #ffffff; --dark: #1f2937;
+            --gray-100: #f9fafb; --gray-200: #f3f4f6; --gray-300: #d1d5db; --gray-600: #6b7280; --gray-700: #4b5563;
+            --success: #10b981; --warning: #f59e0b; --danger: #ef4444; --info: #3b82f6;
+            --success-alpha: rgba(16, 185, 129, 0.1); --warning-alpha: rgba(245, 158, 11, 0.1);
+            --danger-alpha: rgba(239, 68, 68, 0.1); --info-alpha: rgba(59, 130, 246, 0.1);
+            --shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+            --shadow-lg: 0 10px 15px -3px rgba(0,0,0,.1), 0 4px 6px -2px rgba(0,0,0,.05);
+            --shadow-xl: 0 20px 25px -5px rgba(0,0,0,.1), 0 10px 10px -5px rgba(0,0,0,.04);
+            --shadow-2xl: 0 25px 50px -12px rgba(0,0,0,.25);
+            --radius: 8px; --radius-lg: 12px; --radius-xl: 16px; --radius-2xl: 24px; --radius-full: 9999px;
+            --header-height: 70px; --sidebar-width: 280px; --bottom-nav-height: 60px;
+            --transition: 300ms ease; --transition-slow: 500ms ease;
             --font-sans: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
         }
-
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        html { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
+        html { -webkit-font-smoothing: antialiased; }
         body { font-family: var(--font-sans); background: var(--gray-100); color: var(--dark); }
 
         /* ===========================
            NUEVA PANTALLA DE CARGA
         =========================== */
         .loading-screen {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: linear-gradient(135deg, var(--primary) 0%, var(--primary-dark) 100%);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            transition: opacity var(--transition-slow), visibility var(--transition-slow);
+            display: flex; align-items: center; justify-content: center;
+            z-index: 10000; transition: opacity var(--transition-slow), visibility var(--transition-slow);
             overflow: hidden;
         }
-
-        .loading-particles {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            pointer-events: none;
-        }
-
+        .loading-particles { position: absolute; width: 100%; height: 100%; pointer-events: none; }
         .loading-particles .particle {
-            position: absolute;
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 50%;
+            position: absolute; background: rgba(255, 255, 255, 0.1); border-radius: 50%;
             animation: float 25s infinite ease-in-out;
         }
-
-        @keyframes float {
-            0% { transform: translateY(0) rotate(0deg); opacity: 1; }
-            100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; }
-        }
-
-        .loading-content {
-            text-align: center;
-            position: relative;
-            z-index: 1;
-            animation: fadeIn 1s ease;
-        }
-        
+        @keyframes float { 0% { transform: translateY(0) rotate(0deg); opacity: 1; } 100% { transform: translateY(-120vh) rotate(720deg); opacity: 0; } }
+        .loading-content { text-align: center; position: relative; z-index: 1; animation: fadeIn 1s ease; }
         @keyframes fadeIn { from { opacity: 0; transform: scale(0.95); } to { opacity: 1; transform: scale(1); } }
-
         .loading-logo {
-            width: 140px;
-            height: 140px;
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: var(--radius-2xl);
-            padding: 25px;
-            margin: 0 auto 20px;
-            box-shadow: var(--shadow-2xl);
-            animation: pulse 2.5s infinite ease-in-out;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 140px; height: 140px; background: rgba(255, 255, 255, 0.95); border-radius: var(--radius-2xl);
+            padding: 25px; margin: 0 auto 20px; box-shadow: var(--shadow-2xl);
+            animation: pulse 2.5s infinite ease-in-out; display: flex; align-items: center; justify-content: center;
         }
-        
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 255, 255, 0.4); }
-            50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 255, 255, 0); }
-        }
-
-        .loading-logo img {
-            width: 100%;
-            height: 100%;
-            object-fit: contain;
-        }
-
-        .loading-title {
-            color: var(--white);
-            font-size: 28px;
-            font-weight: 700;
-            text-shadow: 0 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .loading-status {
-            color: rgba(255, 255, 255, 0.8);
-            font-size: 16px;
-            min-height: 24px;
-            margin-top: 8px;
-            transition: all var(--transition);
-        }
-        
-        .loading-status.error {
-            color: #ffcdd2;
-            font-weight: 600;
-        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255,255,255,0.4); } 50% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255,255,255,0); } }
+        .loading-logo img { width: 100%; height: 100%; object-fit: contain; }
+        .loading-title { color: var(--white); font-size: 28px; font-weight: 700; text-shadow: 0 2px 4px rgba(0,0,0,0.2); }
+        .loading-status { color: rgba(255, 255, 255, 0.8); font-size: 16px; min-height: 24px; margin-top: 8px; transition: all var(--transition); }
+        .loading-status.error { color: #ffcdd2; font-weight: 600; }
 
         /* ===========================
-           App Container
+           App Container y UI General
         =========================== */
-        .app-container {
-            display: none;
-            min-height: 100vh;
-            opacity: 0;
-            transition: opacity var(--transition-slow);
-        }
+        .app-container { display: none; min-height: 100vh; opacity: 0; transition: opacity var(--transition-slow); }
         .app-container.loaded { opacity: 1; }
-        
-        /* ... Aquí iría el resto de tu CSS (sidebar, header, content, etc.) ... */
-        /* Para mantener el código legible, se han omitido los estilos que no cambian. */
-        /* Debes asegurarte de tenerlos en tu versión final. */
-        .sidebar{width:280px;background:var(--dark);color:var(--white);position:fixed;height:100vh;transition:all var(--transition);z-index:1000;}.main-content{margin-left:280px;transition:margin-left var(--transition)}.header{height:70px;background:var(--white);box-shadow:var(--shadow-lg);display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:999;}.content{padding:30px;}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:2000;}.modal.active{display:flex;align-items:center;justify-content:center;}.modal-overlay{position:absolute;width:100%;height:100%;background:rgba(0,0,0,0.5);}.modal-content{background:var(--white);padding:30px;border-radius:var(--radius);z-index:1;width:90%;max-width:500px;}.btn{padding:10px 20px;border:none;border-radius:var(--radius);cursor:pointer;font-weight:600;}.btn-primary{background:var(--primary);color:var(--white);}.toast-container{position:fixed;bottom:20px;right:20px;z-index:3000;}.toast{padding:15px;margin-top:10px;border-radius:var(--radius);color:var(--white);box-shadow:var(--shadow-lg);}.toast-success{background:var(--success);}.toast-error{background:var(--danger);}
-        .loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.5);display:flex;align-items:center;justify-content:center;z-index:9999;}.loading-content-inner{background:var(--white);padding:20px;border-radius:var(--radius);display:flex;align-items:center;gap:15px;}.loading-spinner{width:30px;height:30px;border:3px solid rgba(0,0,0,0.1);border-top-color:var(--primary);border-radius:50%;animation:spin 1s linear infinite;}@keyframes spin{to{transform:rotate(360deg)}}
+        .sidebar{width:var(--sidebar-width);background:var(--dark);color:var(--white);position:fixed;height:100vh;transition:all var(--transition);z-index:1000;display:flex;flex-direction:column}.sidebar-header{padding:30px 20px;text-align:center;border-bottom:1px solid rgba(255,255,255,.1)}.logo{width:80px;height:80px;background:var(--white);border-radius:var(--radius-xl);margin:0 auto 15px;padding:15px;cursor:pointer}.logo img{width:100%;height:100%}.sidebar-title{font-size:20px;font-weight:700;margin:0}.nav-menu{padding:20px 0;flex-grow:1}.nav-item{display:flex;align-items:center;gap:15px;padding:15px 25px;cursor:pointer;transition:background var(--transition-fast);border:none;background:0 0;color:var(--white);width:100%;text-align:left;font-size:15px}.nav-item.active,.nav-item:hover{background:rgba(255,255,255,.1)}.main-content{margin-left:var(--sidebar-width);transition:margin-left var(--transition);width:calc(100% - var(--sidebar-width))}.header{height:var(--header-height);background:var(--white);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:999}.page-title{font-size:24px;font-weight:700}.header-right{display:flex;align-items:center;gap:20px}.user-avatar{width:40px;height:40px;background:var(--primary);color:var(--white);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;font-weight:700}.content{padding:30px}.tab-content{display:none}.tab-content.active{display:block;animation:fadeIn .5s ease}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-bottom:30px}.stat-card{background:var(--white);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow)}.stat-header{display:flex;justify-content:space-between;align-items:flex-start}.stat-value{font-size:28px;font-weight:700}.stat-label{color:var(--gray-600)}.stat-icon{width:48px;height:48px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:24px}.panel{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);margin-bottom:24px}.panel-header{padding:20px 24px;border-bottom:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center}.panel-title{font-size:18px;font-weight:700}.panel-body{padding:24px}.table{width:100%;border-collapse:collapse}.table th,.table td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--gray-200)}.table th{background:var(--gray-100)}.badge{padding:4px 10px;border-radius:var(--radius-full);font-size:12px;font-weight:600}.badge-success{background:var(--success-alpha);color:var(--success)}.badge-warning{background:var(--warning-alpha);color:var(--warning)}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:2000}.modal.active{display:flex;align-items:center;justify-content:center;animation:fadeIn .3s ease}.modal-overlay{position:absolute;width:100%;height:100%;background:rgba(0,0,0,.5)}.modal-content{background:var(--white);padding:30px;border-radius:var(--radius-lg);z-index:1;width:90%;max-width:600px;animation:slideUp .3s ease}@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid var(--gray-200)}.modal-title{font-size:20px;font-weight:700}.modal-close{background:0 0;border:none;font-size:24px;cursor:pointer}.modal-footer{margin-top:20px;padding-top:15px;border-top:1px solid var(--gray-200);display:flex;justify-content:flex-end;gap:10px}.btn{padding:10px 20px;border:none;border-radius:var(--radius);cursor:pointer;font-weight:600;transition:all var(--transition)}.btn-primary{background:var(--primary);color:var(--white)}.btn-primary:hover{background:var(--primary-dark)}.btn-secondary{background:var(--gray-200)}.form-group{margin-bottom:20px}.form-label{display:block;margin-bottom:8px;font-weight:600}.form-input{width:100%;padding:10px;border:1px solid var(--gray-300);border-radius:var(--radius)}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}.toast-container{position:fixed;bottom:20px;right:20px;z-index:3000}.toast{padding:15px;margin-top:10px;border-radius:var(--radius);color:var(--white);box-shadow:var(--shadow-lg);animation:fadeIn .3s}.toast-success{background:var(--success)}.toast-error{background:var(--danger)}.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(2px)}.loading-spinner{width:40px;height:40px;border:4px solid var(--primary-dark);border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+        @media(max-width:768px){.sidebar{transform:translateX(-100%);z-index:1001}.sidebar.active{transform:translateX(0)}.main-content{margin-left:0;width:100%}.menu-toggle{display:block!important}.hide-mobile{display:none}}
     </style>
 </head>
 <body>
@@ -167,14 +86,72 @@
 
     <!-- Contenedor Principal de la App -->
     <div class="app-container" id="appContainer">
-        <!-- Aquí va el resto de tu HTML (sidebar, header, content, modals, etc.) -->
-        <!-- Este contenido no cambia, por lo que se omite por brevedad. -->
-        <aside class="sidebar">...</aside>
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-header">
+                <div class="logo" onclick="showTab('dashboard')">
+                    <img src="https://i.imgur.com/6XXdcPR.png" alt="Tecsitel">
+                </div>
+                <h2 class="sidebar-title">TECSITEL</h2>
+            </div>
+            <nav class="nav-menu">
+                <button class="nav-item active" onclick="showTab('dashboard')" data-tab="dashboard">
+                    <span class="nav-icon">📊</span><span class="nav-text">Dashboard</span>
+                </button>
+                <button class="nav-item" onclick="showTab('invoices')" data-tab="invoices">
+                    <span class="nav-icon">📄</span><span class="nav-text">Facturas</span>
+                </button>
+            </nav>
+        </aside>
+
         <main class="main-content">
-            <header class="header">...</header>
-            <div class="content">...</div>
+            <header class="header">
+                <button class="menu-toggle" style="display:none;" onclick="document.getElementById('sidebar').classList.toggle('active')">☰</button>
+                <h1 class="page-title" id="pageTitle">Dashboard</h1>
+                <div class="header-right">
+                    <div class="user-avatar" id="userAvatar">A</div>
+                </div>
+            </header>
+
+            <div class="content">
+                <div id="dashboard" class="tab-content active">
+                    <div class="stats-grid">
+                        <div class="stat-card"><div class="stat-header"><div class="stat-info"><div class="stat-value" id="totalIncome">S/ 0.00</div><div class="stat-label">Ingresos Totales</div></div><div class="stat-icon" style="background:var(--success-alpha);color:var(--success)">💰</div></div></div>
+                        <div class="stat-card"><div class="stat-header"><div class="stat-info"><div class="stat-value" id="pendingInvoices">0</div><div class="stat-label">Facturas Pendientes</div></div><div class="stat-icon" style="background:var(--warning-alpha);color:var(--warning)">📋</div></div></div>
+                    </div>
+                    <div class="panel">
+                        <div class="panel-header"><h3 class="panel-title">Facturas Recientes</h3><button class="btn btn-primary" onclick="showModal('newInvoice')">➕ Nueva Factura</button></div>
+                        <div class="panel-body"><div class="table-responsive"><table class="table" id="invoicesTable"><thead><tr><th>N° Factura</th><th>Cliente</th><th class="hide-mobile">Total</th><th>Estado</th></tr></thead><tbody></tbody></table></div></div>
+                    </div>
+                </div>
+
+                <div id="invoices" class="tab-content">
+                    <div class="panel">
+                        <div class="panel-header"><h3 class="panel-title">Todas las Facturas</h3><button class="btn btn-primary" onclick="showModal('newInvoice')">➕ Nueva Factura</button></div>
+                        <div class="panel-body"><div class="table-responsive"><table class="table" id="allInvoicesTable"><thead><tr><th>N° Factura</th><th>Cliente</th><th>RUC</th><th>Total</th><th>Estado</th></tr></thead><tbody></tbody></table></div></div>
+                    </div>
+                </div>
+            </div>
         </main>
-        <div class="modal" id="newInvoiceModal">...</div>
+    </div>
+
+    <!-- Modal para Nueva Factura -->
+    <div class="modal" id="newInvoiceModal">
+        <div class="modal-overlay" onclick="closeModal('newInvoice')"></div>
+        <div class="modal-content">
+            <div class="modal-header"><h2 class="modal-title">Nueva Factura</h2><button class="modal-close" onclick="closeModal('newInvoice')">&times;</button></div>
+            <form id="invoiceForm" onsubmit="saveInvoice(event)">
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">RUC Cliente*</label><input type="text" class="form-input" id="clientRuc" required></div>
+                    <div class="form-group"><label class="form-label">Razón Social*</label><input type="text" class="form-input" id="clientName" required></div>
+                </div>
+                <div class="form-group"><label class="form-label">Descripción*</label><input type="text" class="form-input" id="description" required></div>
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">Monto sin IGV*</label><input type="number" class="form-input" id="amount" required oninput="calculateTotal()"></div>
+                    <div class="form-group"><label class="form-label">Total</label><input type="text" class="form-input" id="totalAmount" readonly></div>
+                </div>
+                <div class="modal-footer"><button type="button" class="btn btn-secondary" onclick="closeModal('newInvoice')">Cancelar</button><button type="submit" class="btn btn-primary">Guardar</button></div>
+            </form>
+        </div>
     </div>
 
     <div class="toast-container" id="toastContainer"></div>
@@ -185,46 +162,39 @@
     // ========================================
     const CONFIG = {
         API_URL: '/.netlify/functions/database',
-        VERSION: '2.2.0', // Versión con corrección de error
+        VERSION: '3.0.0',
+        IGV_RATE: 0.18, // 18%
     };
 
-    // ========================================
-    // Estado de la Aplicación
-    // ========================================
-    const AppState = {
-        user: null,
-        invoices: [],
-        invoiceCounter: 1,
-    };
+    const AppState = { user: null, invoices: [], invoiceCounter: 1 };
 
     // ========================================
-    // Inicialización (Lógica Robusta)
+    // Inicialización
     // ========================================
     document.addEventListener('DOMContentLoaded', async () => {
-        console.log('DOM Cargado. Iniciando sistema...');
-        setupLoadingAnimation(); // Inicia la animación de partículas
+        setupLoadingAnimation();
+        
+        const minDelay = new Promise(resolve => setTimeout(resolve, 5000)); // 5 segundos de espera mínima
+        const dataFetch = initializeApp();
 
         try {
-            await initializeApp();
+            await Promise.all([dataFetch, minDelay]);
             updateLoadingStatus('¡Sistema listo!', false);
             setTimeout(hideLoadingScreen, 500);
         } catch (error) {
             console.error('Error fatal durante la inicialización:', error);
-            // Mostramos el error en la pantalla de carga
-            updateLoadingStatus('Error al cargar. Verifique la configuración e intente refrescar.', true);
+            updateLoadingStatus(error.message, true);
         }
     });
 
     async function initializeApp() {
-        updateLoadingStatus('Conectando con el servidor...', false);
+        updateLoadingStatus('Conectando...', false);
         await loadDataFromServer();
-        
         updateLoadingStatus('Preparando interfaz...', false);
-        // Aquí irían tus funciones para renderizar la UI
-        // renderUI(); 
-        // setupEventListeners();
+        renderUI();
+        setupEventListeners();
     }
-    
+
     function updateLoadingStatus(message, isError = false) {
         const statusElement = document.getElementById('loadingStatus');
         if (statusElement) {
@@ -236,12 +206,10 @@
     function hideLoadingScreen() {
         const loadingScreen = document.getElementById('loadingScreen');
         const appContainer = document.getElementById('appContainer');
-
         if (loadingScreen && appContainer) {
             loadingScreen.style.opacity = '0';
             loadingScreen.style.visibility = 'hidden';
-            appContainer.style.display = 'block'; // O 'flex' según tu layout
-            
+            appContainer.style.display = 'flex';
             setTimeout(() => appContainer.classList.add('loaded'), 50);
         }
     }
@@ -249,126 +217,179 @@
     function setupLoadingAnimation() {
         const container = document.getElementById('loadingParticles');
         if (!container) return;
-        const particleCount = 20;
-        for (let i = 0; i < particleCount; i++) {
-            const particle = document.createElement('div');
-            particle.className = 'particle';
+        for (let i = 0; i < 20; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
             const size = Math.random() * 15 + 5;
-            particle.style.width = `${size}px`;
-            particle.style.height = `${size}px`;
-            particle.style.left = `${Math.random() * 100}%`;
-            particle.style.animationDelay = `${Math.random() * 25}s`;
-            particle.style.animationDuration = `${Math.random() * 15 + 10}s`;
-            container.appendChild(particle);
+            p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-delay:${Math.random()*25}s;animation-duration:${Math.random()*15+10}s;`;
+            container.appendChild(p);
         }
     }
 
     // ========================================
-    // API y Comunicación
+    // API y Lógica de Datos
     // ========================================
     class TecsitelAPI {
         static async getData() {
-            // Se añade un timeout para evitar que se quede esperando indefinidamente
             const controller = new AbortController();
-            const timeoutId = setTimeout(() => controller.abort(), 8000); // 8 segundos de espera
-
+            const timeoutId = setTimeout(() => controller.abort(), 8000);
             try {
                 const response = await fetch(CONFIG.API_URL, { signal: controller.signal });
                 clearTimeout(timeoutId);
-                if (!response.ok) {
-                    // Si el error es 404, es probable que la función no exista o la URL esté mal
-                    if (response.status === 404) {
-                       throw new Error(`Función no encontrada (404). Verifique la URL de la API.`);
-                    }
-                    throw new Error(`Error de red: ${response.status} ${response.statusText}`);
-                }
+                if (!response.ok) throw new Error(`Error de conexión (${response.status}). Verifique la configuración.`);
                 return response.json();
             } catch (error) {
                 clearTimeout(timeoutId);
+                if (error.name === 'AbortError') throw new Error('El servidor no responde. Intente más tarde.');
                 throw error;
             }
         }
-
-        static async saveData(fullData) {
+        static async saveData(data) {
             const response = await fetch(CONFIG.API_URL, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(fullData, null, 2),
+                body: JSON.stringify(data, null, 2),
             });
             if (!response.ok) throw new Error(`Error al guardar: ${response.statusText}`);
             return response.json();
         }
     }
 
-    // ========================================
-    // Lógica de Datos
-    // ========================================
     async function loadDataFromServer() {
         try {
             const data = await TecsitelAPI.getData();
-            // Validamos que el JSON no esté vacío o mal formado
             if (!data || typeof data.invoiceCounter === 'undefined') {
-                throw new Error("Los datos recibidos del servidor son inválidos o están vacíos.");
+                throw new Error("Los datos del servidor son inválidos.");
             }
-            AppState.invoices = data.invoices || [];
-            AppState.invoiceCounter = data.invoiceCounter || 1;
-            AppState.user = data.user || { username: 'Usuario', avatar: 'U' };
+            Object.assign(AppState, data);
         } catch (error) {
             console.error("Fallo en loadDataFromServer:", error.message);
-            // Propagamos el error para que la función de inicialización lo capture
             throw error;
         }
     }
 
     async function persistData() {
-        showLoading('Guardando...');
+        showLoadingSpinner();
         try {
-            const fullData = {
-                invoices: AppState.invoices,
-                invoiceCounter: AppState.invoiceCounter,
-                user: AppState.user,
-            };
-            await TecsitelAPI.saveData(fullData);
+            await TecsitelAPI.saveData(AppState);
             showToast('✅ Cambios guardados.', 'success');
         } catch (error) {
             showToast('❌ Error al guardar.', 'error');
-            console.error("Fallo en persistData:", error);
         } finally {
-            hideLoading();
+            hideLoadingSpinner();
         }
     }
+
+    // ========================================
+    // Renderizado de UI
+    // ========================================
+    function renderUI() {
+        document.getElementById('userAvatar').textContent = AppState.user?.avatar || 'U';
+        renderDashboard();
+        renderAllInvoicesTable();
+    }
+
+    function renderDashboard() {
+        const totalIncome = AppState.invoices.reduce((sum, inv) => sum + inv.total, 0);
+        const pendingCount = AppState.invoices.filter(inv => inv.status === 'Pendiente').length;
+        document.getElementById('totalIncome').textContent = `S/ ${totalIncome.toFixed(2)}`;
+        document.getElementById('pendingInvoices').textContent = pendingCount;
+        
+        const recentInvoices = [...AppState.invoices].reverse().slice(0, 5);
+        const tbody = document.querySelector('#invoicesTable tbody');
+        tbody.innerHTML = recentInvoices.map(inv => `
+            <tr>
+                <td>${inv.invoice_number}</td>
+                <td>${inv.client_name}</td>
+                <td class="hide-mobile">S/ ${inv.total.toFixed(2)}</td>
+                <td><span class="badge badge-${inv.status === 'Pagada' ? 'success' : 'warning'}">${inv.status}</span></td>
+            </tr>
+        `).join('');
+    }
+
+    function renderAllInvoicesTable() {
+        const tbody = document.querySelector('#allInvoicesTable tbody');
+        tbody.innerHTML = AppState.invoices.map(inv => `
+            <tr>
+                <td>${inv.invoice_number}</td>
+                <td>${inv.client_name}</td>
+                <td>${inv.client_ruc}</td>
+                <td>S/ ${inv.total.toFixed(2)}</td>
+                <td><span class="badge badge-${inv.status === 'Pagada' ? 'success' : 'warning'}">${inv.status}</span></td>
+            </tr>
+        `).join('');
+    }
+
+    // ========================================
+    // Lógica de Formularios y Modales
+    // ========================================
+    async function saveInvoice(event) {
+        event.preventDefault();
+        const form = event.target;
+        const newInvoice = {
+            id: Date.now(),
+            invoice_number: `F001-${String(AppState.invoiceCounter++).padStart(8, '0')}`,
+            client_ruc: form.clientRuc.value,
+            client_name: form.clientName.value,
+            description: form.description.value,
+            amount: parseFloat(form.amount.value),
+            total: parseFloat(form.totalAmount.value.replace('S/ ', '')),
+            status: 'Pendiente',
+            created_at: new Date().toISOString(),
+        };
+        AppState.invoices.push(newInvoice);
+        renderUI(); // Re-renderiza toda la UI con los nuevos datos
+        closeModal('newInvoice');
+        form.reset();
+        await persistData();
+    }
+
+    function calculateTotal() {
+        const amount = parseFloat(document.getElementById('amount').value) || 0;
+        const total = amount * (1 + CONFIG.IGV_RATE);
+        document.getElementById('totalAmount').value = `S/ ${total.toFixed(2)}`;
+    }
+
+    function showModal(modalId) { document.getElementById(modalId + 'Modal').classList.add('active'); }
+    function closeModal(modalId) { document.getElementById(modalId + 'Modal').classList.remove('active'); }
+
+    // ========================================
+    // Eventos y Utilidades
+    // ========================================
+    function setupEventListeners() {
+        document.body.addEventListener('click', e => {
+            if (e.target.matches('.modal-overlay')) e.target.closest('.modal').classList.remove('active');
+            if (e.target.matches('.nav-item')) showTab(e.target.dataset.tab);
+        });
+    }
+
+    function showTab(tabName) {
+        document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
+        document.getElementById(tabName)?.classList.add('active');
+        document.querySelectorAll('.nav-item').forEach(i => i.classList.toggle('active', i.dataset.tab === tabName));
+        document.getElementById('pageTitle').textContent = tabName.charAt(0).toUpperCase() + tabName.slice(1);
+    }
     
-    // ========================================
-    // Utilidades (Toast, Loading Spinner, etc.)
-    // ========================================
-    function showToast(message, type = 'info', duration = 3000) {
+    function showToast(message, type = 'info') {
         const container = document.getElementById('toastContainer');
-        if (!container) return;
         const toast = document.createElement('div');
         toast.className = `toast toast-${type}`;
         toast.textContent = message;
         container.appendChild(toast);
-        setTimeout(() => toast.remove(), duration);
-    }
-    
-    function showLoading(message = 'Procesando...') {
-        let overlay = document.getElementById('globalLoading');
-        if (!overlay) {
-            overlay = document.createElement('div');
-            overlay.id = 'globalLoading';
-            overlay.className = 'loading-overlay';
-            overlay.innerHTML = `<div class="loading-content-inner"><div class="loading-spinner"></div><div class="loading-message">${message}</div></div>`;
-            document.body.appendChild(overlay);
-        }
+        setTimeout(() => toast.remove(), 3000);
     }
 
-    function hideLoading() {
+    function showLoadingSpinner() {
+        const overlay = document.createElement('div');
+        overlay.id = 'globalLoading';
+        overlay.className = 'loading-overlay';
+        overlay.innerHTML = `<div class="loading-spinner"></div>`;
+        document.body.appendChild(overlay);
+    }
+
+    function hideLoadingSpinner() {
         document.getElementById('globalLoading')?.remove();
     }
-
-    // Aquí iría el resto de tu lógica de UI (saveInvoice, updateDashboard, etc.)
-    // que ya tenías y que funcionaba correctamente.
-
     </script>
 </body>
 </html>
