@@ -53,10 +53,10 @@
         .loading-particles { position: absolute; width: 100%; height: 100%; pointer-events: none; }
         .loading-particles .particle {
             position: absolute; background: rgba(255, 255, 255, 0.1); border-radius: 50%;
-            animation: float 25s infinite ease-in-out;
+            /* UPDATED ANIMATION: Faster duration */
+            animation: float 10s infinite ease-in-out;
             bottom: -200px; /* Start from below the screen */
         }
-        /* UPDATED ANIMATION: Bottom to Top */
         @keyframes float {
             from {
                 transform: translateY(0) rotate(0deg);
@@ -431,7 +431,7 @@
     // ========================================
     const CONFIG = {
         IGV_RATE: 0.18,
-        LOADING_DURATION: 1500, // Reducido para una carga más rápida
+        LOADING_DURATION: 1500,
     };
 
     const AppState = { 
@@ -479,20 +479,21 @@
     // ========================================
     // Inicialización
     // ========================================
-    document.addEventListener('DOMContentLoaded', async () => {
+    document.addEventListener('DOMContentLoaded', () => {
         setupLoadingAnimation();
         const minDelay = new Promise(resolve => setTimeout(resolve, CONFIG.LOADING_DURATION));
         
-        try {
-            updateLoadingStatus('Cargando datos de la empresa...', false);
-            loadSampleData();
-            await minDelay;
+        updateLoadingStatus('Cargando datos de la empresa...', false);
+        loadSampleData();
+        
+        minDelay.then(() => {
             updateLoadingStatus('¡Sistema listo!', false);
-            setTimeout(hideLoadingScreen, 500);
-        } catch (error) {
-            console.error('Error fatal durante la inicialización:', error);
-            updateLoadingStatus(error.message, true);
-        }
+            setTimeout(() => {
+                hideLoadingScreen();
+                renderAll();
+                setupEventListeners();
+            }, 500);
+        });
     });
 
     function hideLoadingScreen() {
@@ -502,21 +503,24 @@
             loadingScreen.style.opacity = '0';
             loadingScreen.style.visibility = 'hidden';
             appContainer.classList.add('loaded');
-            // Renderizar la UI después de que la pantalla de carga se oculte
-            renderAll();
-            setupEventListeners();
         }
     }
 
     function setupLoadingAnimation() {
         const container = document.getElementById('loadingParticles');
         if (!container) return;
-        const particleCount = 25;
+        const particleCount = 30; // Increased particles
         for (let i = 0; i < particleCount; i++) {
             const p = document.createElement('div');
             p.className = 'particle';
-            const size = Math.random() * 15 + 5;
-            p.style.cssText = `width:${size}px;height:${size}px;left:${Math.random()*100}%;animation-delay:${Math.random()*25}s;animation-duration:${Math.random()*15+10}s;`;
+            const size = Math.random() * 10 + 4; // Slightly smaller particles
+            p.style.cssText = `
+                width:${size}px;
+                height:${size}px;
+                left:${Math.random()*100}%;
+                animation-delay:${Math.random() * 10}s;
+                animation-duration:${Math.random() * 8 + 6}s;
+            `;
             container.appendChild(p);
         }
     }
@@ -558,7 +562,7 @@
             const symbol = inv.currency === 'PEN' ? 'S/' : '$';
             const total = inv.isExport ? inv.amount : inv.amount * (1 + CONFIG.IGV_RATE);
             const statusClass = inv.status === 'Pagada' ? 'success' : 'warning';
-            const rowHtml = `
+            const allInvoicesRow = `
                 <tr>
                     <td>${inv.invoice_number}</td>
                     <td>${inv.clientName}</td>
@@ -566,10 +570,18 @@
                     <td>${symbol} ${total.toFixed(2)}</td>
                     <td><span class="badge badge-${statusClass}">${inv.status}</span></td>
                 </tr>`;
+            
             if (index < 5) {
-                recentTbody.innerHTML += rowHtml.replace(`<td class="hide-mobile">${inv.clientRuc}</td>`, '');
+                const recentInvoicesRow = `
+                <tr>
+                    <td>${inv.invoice_number}</td>
+                    <td>${inv.clientName}</td>
+                    <td class="hide-mobile">${symbol} ${total.toFixed(2)}</td>
+                    <td><span class="badge badge-${statusClass}">${inv.status}</span></td>
+                </tr>`;
+                recentTbody.innerHTML += recentInvoicesRow;
             }
-            allTbody.innerHTML += rowHtml;
+            allTbody.innerHTML += allInvoicesRow;
         });
     }
 
@@ -668,8 +680,9 @@
         closeModal('newInvoice');
         form.reset();
         handleCurrencyChange('PEN');
-        renderInvoices(); // Re-render invoices table
-        renderDashboard(); // Re-render dashboard stats
+        renderInvoices();
+        renderDashboard();
+        renderAccounting();
     }
     
     async function savePayment(event) {
@@ -812,26 +825,6 @@
         if (window.innerWidth <= 1024) {
             document.getElementById('sidebar').classList.remove('active');
         }
-    }
-    
-    function exportData() {
-        showToast('📥 Generando reporte CSV...', 'info');
-        let csvContent = "data:text/csv;charset=utf-8,";
-        csvContent += "NumeroFactura,Moneda,Total,Estado\n";
-        AppState.invoices.forEach(inv => {
-            csvContent += `${inv.invoice_number},${inv.currency},${inv.total},${inv.status}\n`;
-        });
-        
-        setTimeout(() => {
-            const encodedUri = encodeURI(csvContent);
-            const link = document.createElement("a");
-            link.setAttribute("href", encodedUri);
-            link.setAttribute("download", "reporte_facturas.csv");
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-            showToast('✅ Reporte descargado.', 'success');
-        }, 1500);
     }
     
     function showToast(message, type = 'info') {
