@@ -85,15 +85,12 @@
         .app-container { display: none; min-height: 100vh; opacity: 0; transition: opacity var(--transition-slow); }
         .app-container.loaded { opacity: 1; display: flex; }
         .sidebar{width:var(--sidebar-width);background:linear-gradient(180deg, var(--primary) 0%, var(--primary-dark) 100%);color:var(--white);position:fixed;height:100vh;transition:all var(--transition);z-index:1000;display:flex;flex-direction:column}
-        .sidebar-header{padding:30px 20px;text-align:center;border-bottom:1px solid rgba(255,255,255,.1)}.logo{width:80px;height:80px;background:var(--white);border-radius:var(--radius-xl);margin:0 auto 15px;padding:15px;cursor:pointer}.logo img{width:100%;height:100%}.sidebar-title{font-size:20px;font-weight:700;margin:0}.sidebar-subtitle{font-size:14px;opacity:.8;margin-top:4px}.nav-menu{padding:20px 0;flex-grow:1;overflow-y:auto}.nav-item{display:flex;align-items:center;gap:15px;padding:15px 25px;cursor:pointer;transition:background .2s ease, padding-left .2s ease;border:none;background:0 0;color:var(--white);width:100%;text-align:left;font-size:15px}.nav-item .nav-icon{font-size:24px;width:28px;text-align:center}.nav-item.active,.nav-item:hover{background:rgba(255,255,255,.1);padding-left:30px}.main-content{margin-left:var(--sidebar-width);transition:margin-left var(--transition);width:calc(100% - var(--sidebar-width));display:flex;flex-direction:column;min-height:100vh}.header{height:var(--header-height);background:var(--white);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:999}.page-title{font-size:24px;font-weight:700}.header-right{display:flex;align-items:center;gap:20px}.user-avatar{width:40px;height:40px;background:var(--primary);color:var(--white);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;font-weight:700;cursor:pointer}.content{padding:30px;flex-grow:1}.tab-content{display:none}.tab-content.active{display:block;animation:fadeIn .5s ease}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-bottom:30px}.stat-card{background:var(--white);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow)}.stat-header{display:flex;justify-content:space-between;align-items:flex-start}.stat-value{font-size:28px;font-weight:700}.stat-label{color:var(--gray-600)}.stat-icon{width:48px;height:48px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:24px}.panel{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);margin-bottom:24px}.panel-header{padding:20px 24px;border-bottom:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}.panel-title{font-size:18px;font-weight:700}.panel-body{padding:24px}.table-responsive{overflow-x:auto}.table{width:100%;border-collapse:collapse;min-width:600px}.table th,.table td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--gray-200)}.table th{background:var(--gray-100)}.badge{padding:4px 10px;border-radius:var(--radius-full);font-size:12px;font-weight:600}.badge-success{background:var(--success-alpha);color:var(--success)}.badge-warning{background:var(--warning-alpha);color:var(--warning)}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:2000}.modal.active{display:flex;align-items:center;justify-content:center;animation:fadeIn .3s ease}.modal-overlay{position:absolute;width:100%;height:100%;background:rgba(0,0,0,.5)}.modal-content{background:var(--white);padding:30px;border-radius:var(--radius-lg);z-index:1;width:90%;max-width:600px;max-height:90vh;display:flex;flex-direction:column;animation:slideUp .3s ease}@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid var(--gray-200)}.modal-title{font-size:20px;font-weight:700}.modal-body{overflow-y:auto;padding-right:15px;margin-right:-15px}.modal-close{background:0 0;border:none;font-size:24px;cursor:pointer}.modal-footer{margin-top:20px;padding-top:15px;border-top:1px solid var(--gray-200);display:flex;justify-content:flex-end;gap:10px}.btn{padding:10px 20px;border:none;border-radius:var(--radius);cursor:pointer;font-weight:600;transition:all var(--transition)}.btn-primary{background:var(--primary);color:var(--white)}.btn-primary:hover{background:var(--primary-dark)}.btn-secondary{background:var(--gray-200)}.form-group{margin-bottom:20px}.form-label{display:block;margin-bottom:8px;font-weight:600}.form-input,.form-select,.form-textarea{width:100%;padding:10px;border:1px solid var(--gray-300);border-radius:var(--radius)}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}.toast-container{position:fixed;bottom:20px;right:20px;z-index:3000}.toast{padding:15px;margin-top:10px;border-radius:var(--radius);color:var(--white);box-shadow:var(--shadow-lg);animation:fadeIn .3s}.toast-success{background:var(--success)}.toast-error{background:var(--danger)}.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(2px)}.loading-spinner{width:40px;height:40px;border:4px solid var(--primary-dark);border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+        .sidebar-header{padding:30px 20px;text-align:center;border-bottom:1px solid rgba(255,255,255,.1)}.logo{width:80px;height:80px;background:var(--white);border-radius:var(--radius-xl);margin:0 auto 15px;padding:15px;cursor:pointer}.logo img{width:100%;height:100%}.sidebar-title{font-size:20px;font-weight:700;margin:0}.sidebar-subtitle{font-size:14px;opacity:.8;margin-top:4px}.nav-menu{padding:20px 0;flex-grow:1;overflow-y:auto}.nav-item{display:flex;align-items:center;gap:15px;padding:15px 25px;cursor:pointer;transition:background .2s ease, padding-left .2s ease;border:none;background:0 0;color:var(--white);width:100%;text-align:left;font-size:15px}.nav-item .nav-icon{font-size:24px;width:28px;text-align:center}.nav-item.active,.nav-item:hover{background:rgba(255,255,255,.1);padding-left:30px}.main-content{margin-left:var(--sidebar-width);transition:margin-left var(--transition);width:calc(100% - var(--sidebar-width));display:flex;flex-direction:column;min-height:100vh}.header{height:var(--header-height);background:var(--white);box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;padding:0 30px;position:sticky;top:0;z-index:999}.page-title{font-size:24px;font-weight:700}.header-right{display:flex;align-items:center;gap:20px}.user-avatar{width:40px;height:40px;background:var(--primary);color:var(--white);border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;font-weight:700;cursor:pointer}.content{padding:30px;flex-grow:1}.tab-content{display:none}.tab-content.active{display:block;animation:fadeIn .5s ease}.stats-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-bottom:30px}.stat-card{background:var(--white);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow)}.stat-header{display:flex;justify-content:space-between;align-items:flex-start}.stat-value{font-size:28px;font-weight:700}.stat-label{color:var(--gray-600)}.stat-icon{width:48px;height:48px;border-radius:var(--radius);display:flex;align-items:center;justify-content:center;font-size:24px}.panel{background:var(--white);border-radius:var(--radius-lg);box-shadow:var(--shadow);margin-bottom:24px}.panel-header{padding:20px 24px;border-bottom:1px solid var(--gray-200);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:10px}.panel-title{font-size:18px;font-weight:700}.panel-body{padding:24px}.table-responsive{overflow-x:auto}.table{width:100%;border-collapse:collapse;min-width:600px}.table th,.table td{padding:12px 16px;text-align:left;border-bottom:1px solid var(--gray-200)}.table th{background:var(--gray-100)}.badge{padding:4px 10px;border-radius:var(--radius-full);font-size:12px;font-weight:600}.badge-success{background:var(--success-alpha);color:var(--success)}.badge-warning{background:var(--warning-alpha);color:var(--warning)}.modal{display:none;position:fixed;top:0;left:0;width:100%;height:100%;z-index:2000}.modal.active{display:flex;align-items:center;justify-content:center;animation:fadeIn .3s ease}.modal-overlay{position:absolute;width:100%;height:100%;background:rgba(0,0,0,.5)}.modal-content{background:var(--white);padding:30px;border-radius:var(--radius-lg);z-index:1;width:90%;max-width:600px;max-height:90vh;display:flex;flex-direction:column;animation:slideUp .3s ease}@keyframes slideUp{from{transform:translateY(20px);opacity:0}to{transform:translateY(0);opacity:1}}.modal-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:20px;padding-bottom:15px;border-bottom:1px solid var(--gray-200)}.modal-title{font-size:20px;font-weight:700}.modal-body{overflow-y:auto;padding-right:15px;margin-right:-15px}.modal-close{background:0 0;border:none;font-size:24px;cursor:pointer}.modal-footer{margin-top:20px;padding-top:15px;border-top:1px solid var(--gray-200);display:flex;justify-content:flex-end;gap:10px}.btn{padding:10px 20px;border:none;border-radius:var(--radius);cursor:pointer;font-weight:600;transition:all var(--transition)}.btn-primary{background:var(--primary);color:var(--white)}.btn-primary:hover{background:var(--primary-dark)}.btn-secondary{background:var(--gray-200)}.btn-danger{background:var(--danger);color:var(--white)}.btn-danger:hover{background:var(--danger-light)}.btn-sm{padding:6px 12px;font-size:12px}.form-group{margin-bottom:20px}.form-label{display:block;margin-bottom:8px;font-weight:600}.form-input,.form-select,.form-textarea{width:100%;padding:10px;border:1px solid var(--gray-300);border-radius:var(--radius)}.form-row{display:grid;grid-template-columns:1fr 1fr;gap:20px}.toast-container{position:fixed;bottom:20px;right:20px;z-index:3000}.toast{padding:15px;margin-top:10px;border-radius:var(--radius);color:var(--white);box-shadow:var(--shadow-lg);animation:fadeIn .3s}.toast-success{background:var(--success)}.toast-error{background:var(--danger)}.loading-overlay{position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(255,255,255,.8);display:flex;align-items:center;justify-content:center;z-index:9999;backdrop-filter:blur(2px)}.loading-spinner{width:40px;height:40px;border:4px solid var(--primary-dark);border-top-color:transparent;border-radius:50%;animation:spin 1s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
         .alert{padding:16px 20px;border-radius:var(--radius);margin-bottom:20px;display:flex;gap:12px;border:1px solid transparent}.alert-info{background:var(--info-alpha);color:var(--info);border-color:rgba(59,130,246,.2)}.alert-icon{font-size:20px;flex-shrink:0}.alert-content strong{display:block;margin-bottom:4px}.quick-actions{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:16px;margin-top:30px}.action-card{background:var(--white);border:2px dashed var(--gray-300);border-radius:var(--radius-lg);padding:24px;text-align:center;cursor:pointer;transition:all var(--transition)}.action-card:hover{border-color:var(--primary);border-style:solid;transform:translateY(-2px);box-shadow:var(--shadow-md)}.action-icon{font-size:32px;margin-bottom:12px}.action-title{font-weight:700;margin-bottom:4px;font-size:16px}.action-desc{font-size:13px;color:var(--gray-600)}.compliance-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(320px,1fr));gap:20px;margin-bottom:24px}.compliance-card{background:var(--white);border-radius:var(--radius-lg);padding:24px;box-shadow:var(--shadow)}.compliance-header{display:flex;align-items:center;gap:16px;margin-bottom:20px}.compliance-icon{width:60px;height:60px;border-radius:var(--radius-lg);display:flex;align-items:center;justify-content:center;font-size:32px}.compliance-info h3{margin:0;font-size:20px}.compliance-info p{color:var(--gray-600);margin:0;font-size:14px}.compliance-list{display:flex;flex-direction:column;gap:12px}.compliance-item{display:flex;align-items:center;gap:12px}.check-icon{width:24px;height:24px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;color:var(--white);font-size:14px}.compliance-progress{margin-top:20px}.progress-header{display:flex;justify-content:space-between;margin-bottom:8px;font-size:14px}.progress{height:8px;background:var(--gray-200);border-radius:var(--radius-full);overflow:hidden}.progress-bar{height:100%;background:var(--primary);border-radius:var(--radius-full);transition:width var(--transition)}.employee-info{display:flex;align-items:center;gap:12px}.employee-avatar{width:40px;height:40px;border-radius:var(--radius-full);display:flex;align-items:center;justify-content:center;font-weight:700}.employee-details .employee-name{font-weight:600}.employee-details .employee-role{font-size:12px;color:var(--gray-600)}
         .balance-sheet{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px}.balance-section{background:var(--gray-100);padding:20px;border-radius:var(--radius);border-left:4px solid var(--primary)}.balance-section h4{margin:0 0 16px;color:var(--dark);font-size:16px;font-weight:700}.balance-item{display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--gray-200)}.balance-item:last-child{border-bottom:none}.balance-total{font-weight:700;margin-top:12px;padding-top:12px;border-top:2px solid var(--primary);color:var(--dark);display:flex;justify-content:space-between}
         .bottom-nav{display:none}
         .hidden { display: none !important; }
         .checkbox-group { display: flex; align-items: center; gap: 10px; }
-        .gemini-button { margin-left: 10px; padding: 5px 10px; font-size: 12px; }
-        #financialAnalysisResult { margin-top: 20px; padding: 15px; background: var(--gray-100); border-radius: var(--radius); border: 1px solid var(--gray-200); white-space: pre-wrap; line-height: 1.6; }
-        #financialAnalysisResult strong { color: var(--primary-dark); }
         
         /* ===========================
            Responsive Design
@@ -123,7 +120,7 @@
                     <img src="https://i.imgur.com/6XXdcPR.png" alt="Tecsitel">
                 </div>
                 <h2 class="sidebar-title">TECSITEL</h2>
-                <p class="sidebar-subtitle">Sistema de Gestión v2.7</p>
+                <p class="sidebar-subtitle">Sistema de Gestión v2.8</p>
             </div>
             <nav class="nav-menu">
                 <button class="nav-item active" data-tab="dashboard">
@@ -162,7 +159,6 @@
                     <div class="stats-grid">
                         <div class="stat-card"><div class="stat-header"><div class="stat-info"><div class="stat-value" id="totalIncome">S/ 0.00</div><div class="stat-label">Ingresos Totales</div></div><div class="stat-icon" style="background:var(--success-alpha);color:var(--success)">💰</div></div></div>
                         <div class="stat-card"><div class="stat-header"><div class="stat-info"><div class="stat-value" id="pendingInvoices">0</div><div class="stat-label">Facturas Pendientes</div></div><div class="stat-icon" style="background:var(--warning-alpha);color:var(--warning)">📋</div></div></div>
-                        <div class="stat-card"><div class="stat-header"><div class="stat-info"><div class="stat-value" id="totalExpenses">S/ 0.00</div><div class="stat-label">Egresos Totales</div></div><div class="stat-icon" style="background:var(--danger-alpha);color:var(--danger)">💳</div></div></div>
                         <div class="stat-card"><div class="stat-header"><div class="stat-info"><div class="stat-value" id="netBalance">S/ 0.00</div><div class="stat-label">Balance Neto</div></div><div class="stat-icon" style="background:var(--info-alpha);color:var(--info)">📈</div></div></div>
                     </div>
                     <div class="panel">
@@ -181,22 +177,29 @@
                                     Cumpliendo con normativas SUNAT, SUNAFIL y MINTRA.
                                 </div>
                             </div>
-                            <div class="table-responsive"><table class="table" id="recentInvoicesTable"><thead><tr><th>N° Factura</th><th>Cliente</th><th class="hide-mobile">Total</th><th>Estado</th></tr></thead><tbody></tbody></table></div>
+                            <div class="table-responsive"><table class="table" id="recentInvoicesTable"><thead><tr><th>N° Factura</th><th>Cliente</th><th class="hide-mobile">Total</th><th>Estado</th></tr></thead><tbody><tr><td colspan="4" style="text-align: center;">No hay facturas registradas.</td></tr></tbody></table></div>
                         </div>
                     </div>
                      <div class="quick-actions">
                         <div class="action-card" onclick="showModal('newInvoice')"><div class="action-icon">➕</div><div class="action-title">Nueva Factura</div><div class="action-desc">Crear comprobante</div></div>
                         <div class="action-card" onclick="showModal('registerPayment')"><div class="action-icon">💵</div><div class="action-title">Registrar Cobro</div><div class="action-desc">Ingresar pago</div></div>
                         <div class="action-card" onclick="showTab('personnel')"><div class="action-icon">👥</div><div class="action-title">Ver Personal</div><div class="action-desc">Gestionar equipo</div></div>
-                        <div class="action-card" onclick="showModal('timeEntry')"><div class="action-icon">✍️</div><div class="action-title">Marcar Asistencia</div><div class="action-desc">Registrar entrada/salida</div></div>
+                        <div class="action-card" onclick="showModal('timeEntry')"><div class="action-icon">✍️</div><div class="action-title">Control de Asistencia</div><div class="action-desc">Registrar marcación</div></div>
                     </div>
                 </div>
                 
                 <!-- Invoices Tab -->
                 <div id="invoices" class="tab-content">
                     <div class="panel">
-                        <div class="panel-header"><h3 class="panel-title">Todas las Facturas</h3><button class="btn btn-primary" onclick="showModal('newInvoice')">➕ Nueva Factura</button></div>
-                        <div class="panel-body"><div class="table-responsive"><table class="table" id="allInvoicesTable"><thead><tr><th>N° Factura</th><th>Cliente</th><th class="hide-mobile">RUC</th><th>Total</th><th>Estado</th></tr></thead><tbody></tbody></table></div></div>
+                        <div class="panel-header">
+                            <h3 class="panel-title">Todas las Facturas</h3>
+                            <div class="panel-actions" style="gap: 10px;">
+                                <input type="file" id="uploadInvoiceInput" class="hidden" multiple onchange="handleFileUpload(this.files)" accept=".pdf,.jpg,.jpeg,.png">
+                                <button class="btn btn-secondary" onclick="document.getElementById('uploadInvoiceInput').click()">Subir Facturas</button>
+                                <button class="btn btn-primary" onclick="showModal('newInvoice')">➕ Nueva Factura</button>
+                            </div>
+                        </div>
+                        <div class="panel-body"><div class="table-responsive"><table class="table" id="allInvoicesTable"><thead><tr><th>N° Factura</th><th>Cliente</th><th class="hide-mobile">RUC</th><th>Total</th><th>Estado</th><th>Acciones</th></tr></thead><tbody><tr><td colspan="6" style="text-align: center;">No hay facturas registradas.</td></tr></tbody></table></div></div>
                     </div>
                 </div>
 
@@ -205,31 +208,29 @@
                     <div class="panel">
                         <div class="panel-header">
                             <h3 class="panel-title">💰 Estado de Situación Financiera</h3>
-                            <button class="btn btn-primary" onclick="analyzeFinancials(this)">✨ Analizar Estado Financiero</button>
                         </div>
                         <div class="panel-body">
                            <div class="balance-sheet">
                                 <div class="balance-section">
                                     <h4>ACTIVOS</h4>
-                                    <div class="balance-item"><span>Efectivo y Bancos</span><span id="cashBalance">S/ 0.00</span></div>
-                                    <div class="balance-item"><span>Cuentas por Cobrar</span><span id="receivables">S/ 0.00</span></div>
-                                    <div class="balance-item"><span>Inventario</span><span>S/ 8,450.00</span></div>
-                                    <div class="balance-total"><span>Total Activos</span><span id="totalAssets">S/ 0.00</span></div>
+                                    <div class="balance-item"><span>Efectivo y Bancos</span><span id="cashBalance">S/ 12,500.00</span></div>
+                                    <div class="balance-item"><span>Cuentas por Cobrar</span><span id="receivables">S/ 7,800.00</span></div>
+                                    <div class="balance-item"><span>Inventario</span><span>S/ 4,200.00</span></div>
+                                    <div class="balance-total"><span>Total Activos</span><span id="totalAssets">S/ 24,500.00</span></div>
                                 </div>
                                 <div class="balance-section">
                                     <h4>PASIVOS</h4>
-                                    <div class="balance-item"><span>Cuentas por Pagar</span><span>S/ 5,600.00</span></div>
-                                    <div class="balance-item"><span>Impuestos por Pagar</span><span id="taxesPayable">S/ 0.00</span></div>
-                                    <div class="balance-total"><span>Total Pasivos</span><span id="totalLiabilities">S/ 0.00</span></div>
+                                    <div class="balance-item"><span>Cuentas por Pagar</span><span>S/ 3,100.00</span></div>
+                                    <div class="balance-item"><span>Impuestos por Pagar</span><span id="taxesPayable">S/ 1,250.00</span></div>
+                                    <div class="balance-total"><span>Total Pasivos</span><span id="totalLiabilities">S/ 4,350.00</span></div>
                                 </div>
                                 <div class="balance-section">
                                     <h4>PATRIMONIO</h4>
-                                    <div class="balance-item"><span>Capital Social</span><span>S/ 50,000.00</span></div>
-                                    <div class="balance-item"><span>Utilidades Retenidas</span><span id="retainedEarnings">S/ 0.00</span></div>
-                                    <div class="balance-total"><span>Total Patrimonio</span><span id="totalEquity">S/ 0.00</span></div>
+                                    <div class="balance-item"><span>Capital Social</span><span>S/ 15,000.00</span></div>
+                                    <div class="balance-item"><span>Utilidades Retenidas</span><span id="retainedEarnings">S/ 5,150.00</span></div>
+                                    <div class="balance-total"><span>Total Patrimonio</span><span id="totalEquity">S/ 20,150.00</span></div>
                                 </div>
                            </div>
-                           <div id="financialAnalysisResult" class="hidden"></div>
                         </div>
                     </div>
                 </div>
@@ -244,7 +245,7 @@
                         <div class="panel-body">
                            <div class="table-responsive">
                                <table class="table" id="employeesTable">
-                                   <thead><tr><th>DNI</th><th>Nombre Completo</th><th>Estado</th></tr></thead>
+                                   <thead><tr><th>DNI</th><th>Nombre Completo</th><th>Estado</th><th>Acciones</th></tr></thead>
                                    <tbody></tbody>
                                </table>
                            </div>
@@ -259,7 +260,7 @@
                            <div class="alert alert-info"><span class="alert-icon">ℹ️</span><div class="alert-content"><strong>Cumplimiento SUNAFIL.</strong> El registro de control de asistencia es obligatorio.</div></div>
                            <div class="table-responsive">
                                <table class="table" id="timeTrackingTable">
-                                   <thead><tr><th>Trabajador</th><th>Entrada</th><th>Salida</th><th>Estado</th></tr></thead>
+                                   <thead><tr><th>Trabajador</th><th>Entrada</th><th>Salida</th><th>Estado</th><th>Acciones</th></tr></thead>
                                    <tbody></tbody>
                                </table>
                            </div>
@@ -286,16 +287,15 @@
                 <!-- SharePoint Tab -->
                 <div id="sharepoint" class="tab-content">
                     <div class="panel">
-                        <div class="panel-header"><h3 class="panel-title">☁️ Sistema de Respaldos (Simulado)</h3></div>
+                        <div class="panel-header"><h3 class="panel-title">☁️ Sistema de Respaldos</h3></div>
                         <div class="panel-body">
-                            <p>Este es un sistema de respaldo simulado. En una versión de producción, se conectaría a un servicio como SharePoint o S3.</p>
-                            <button class="btn btn-primary" onclick="showToast('Iniciando respaldo manual...', 'info')">Iniciar Respaldo Manual</button>
+                            <p>Genera y descarga un respaldo completo de todos los datos de la aplicación en un único archivo CSV.</p>
+                            <button class="btn btn-success" onclick="downloadFullBackup()">Descargar Respaldo Completo (CSV)</button>
                         </div>
                     </div>
                 </div>
             </div>
             
-            <!-- Bottom Navigation for Mobile -->
             <nav class="bottom-nav" id="bottomNav">
                 <a href="#" class="bottom-nav-item active" data-tab="dashboard"><span class="bottom-nav-icon">📊</span><span>Dashboard</span></a>
                 <a href="#" class="bottom-nav-item" data-tab="invoices"><span class="bottom-nav-icon">📄</span><span>Facturas</span></a>
@@ -306,7 +306,6 @@
         </main>
     </div>
 
-    <!-- Modal para Nueva Factura -->
     <div class="modal" id="newInvoiceModal">
         <div class="modal-overlay" onclick="closeModal('newInvoice')"></div>
         <div class="modal-content">
@@ -314,15 +313,12 @@
             <div class="modal-body">
                 <form id="invoiceForm" onsubmit="saveInvoice(event)">
                     <div class="form-row">
-                        <div class="form-group"><label class="form-label">RUC Cliente*</label><input type="text" class="form-input" name="clientRuc" required></div>
-                        <div class="form-group"><label class="form-label">Razón Social*</label><input type="text" class="form-input" name="clientName" required></div>
+                        <div class="form-group"><label class="form-label">RUC Cliente*</label><input type="text" class="form-input" name="clientRuc" placeholder="20100055237" required></div>
+                        <div class="form-group"><label class="form-label">Razón Social*</label><input type="text" class="form-input" name="clientName" placeholder="Mi Cliente SAC" required></div>
                     </div>
                     <div class="form-group">
                         <label class="form-label">Descripción*</label>
-                        <div style="display: flex; align-items: center;">
-                            <textarea class="form-textarea" name="description" required style="width: 100%;"></textarea>
-                            <button type="button" class="btn btn-secondary gemini-button" onclick="generateInvoiceDescription(this)">✨</button>
-                        </div>
+                        <textarea class="form-textarea" name="description" placeholder="Servicio de consultoría..." required></textarea>
                     </div>
                      <div class="form-row">
                         <div class="form-group">
@@ -339,7 +335,7 @@
                     </div>
                     <div class="form-group">
                         <label class="form-label">Monto Base* (<span class="currency-symbol">S/</span>)</label>
-                        <input type="number" step="0.01" class="form-input" name="amount" required oninput="calculateTotal()">
+                        <input type="number" step="0.01" class="form-input" name="amount" placeholder="1500.00" required oninput="calculateTotal()">
                     </div>
                     <div class="form-group checkbox-group">
                         <input type="checkbox" id="isExportInvoice" onchange="calculateTotal()">
@@ -349,20 +345,23 @@
                         <label class="form-label">Total (IGV Incl.) (<span class="currency-symbol">S/</span>)</label>
                         <input type="text" class="form-input" name="totalAmount" readonly>
                     </div>
+                    <div class="form-group">
+                        <label for="invoiceFile" class="form-label">Adjuntar Archivo (PDF, JPG, PNG)</label>
+                        <input type="file" id="invoiceFile" class="form-input" name="invoiceFile" accept=".pdf,.jpg,.jpeg,.png">
+                    </div>
                 </form>
             </div>
             <div class="modal-footer"><button type="button" class="btn btn-secondary" onclick="closeModal('newInvoice')">Cancelar</button><button type="submit" form="invoiceForm" class="btn btn-primary">Guardar</button></div>
         </div>
     </div>
     
-    <!-- Modal para Registrar Cobro -->
     <div class="modal" id="registerPaymentModal">
         <div class="modal-overlay" onclick="closeModal('registerPayment')"></div>
         <div class="modal-content">
             <div class="modal-header"><h2 class="modal-title">Registrar Cobro</h2><button class="modal-close" onclick="closeModal('registerPayment')">&times;</button></div>
             <div class="modal-body">
                 <form id="paymentForm" onsubmit="savePayment(event)">
-                    <div class="form-group"><label class="form-label">N° de Factura*</label><input type="text" class="form-input" name="invoiceNumber" placeholder="F001-00001234" required></div>
+                    <div class="form-group"><label class="form-label">N° de Factura*</label><input type="text" class="form-input" name="invoiceNumber" placeholder="F001-0001" required></div>
                     <div class="form-row">
                         <div class="form-group">
                             <label class="form-label">Moneda*</label>
@@ -373,7 +372,7 @@
                         </div>
                         <div class="form-group">
                             <label class="form-label">Monto Cobrado* (<span class="currency-symbol">S/</span>)</label>
-                            <input type="number" step="0.01" class="form-input" name="paymentAmount" required>
+                            <input type="number" step="0.01" class="form-input" name="paymentAmount" placeholder="1770.00" required>
                         </div>
                     </div>
                     <div class="form-group"><label class="form-label">Fecha de Cobro*</label><input type="date" class="form-input" name="paymentDate" required></div>
@@ -384,7 +383,6 @@
         </div>
     </div>
 
-    <!-- Modal para Marcar Asistencia -->
     <div class="modal" id="timeEntryModal">
         <div class="modal-overlay" onclick="closeModal('timeEntry')"></div>
         <div class="modal-content">
@@ -412,17 +410,16 @@
         </div>
     </div>
 
-    <!-- Modal para Nuevo Empleado -->
     <div class="modal" id="newEmployeeModal">
         <div class="modal-overlay" onclick="closeModal('newEmployee')"></div>
         <div class="modal-content">
             <div class="modal-header"><h2 class="modal-title">Nuevo Empleado</h2><button class="modal-close" onclick="closeModal('newEmployee')">&times;</button></div>
             <div class="modal-body">
                 <form id="newEmployeeForm" onsubmit="saveEmployee(event)">
-                    <div class="form-group"><label class="form-label">DNI*</label><input type="text" pattern="[0-9]{8}" maxlength="8" class="form-input" name="employeeDni" required></div>
+                    <div class="form-group"><label class="form-label">DNI*</label><input type="text" pattern="[0-9]{8}" maxlength="8" class="form-input" name="employeeDni" placeholder="71234567" required></div>
                     <div class="form-row">
-                        <div class="form-group"><label class="form-label">Nombres*</label><input type="text" class="form-input" name="employeeFirstName" required></div>
-                        <div class="form-group"><label class="form-label">Apellidos*</label><input type="text" class="form-input" name="employeeLastName" required></div>
+                        <div class="form-group"><label class="form-label">Nombres*</label><input type="text" class="form-input" name="employeeFirstName" placeholder="Juan" required></div>
+                        <div class="form-group"><label class="form-label">Apellidos*</label><input type="text" class="form-input" name="employeeLastName" placeholder="Pérez García" required></div>
                     </div>
                 </form>
             </div>
@@ -439,7 +436,7 @@
     // ========================================
     const CONFIG = {
         IGV_RATE: 0.18,
-        LOADING_DURATION: 1500,
+        LOADING_DURATION: 5000,
     };
 
     const AppState = { 
@@ -447,7 +444,6 @@
         invoices: [],
         employees: [],
         timeEntries: [],
-        expenses: [],
         invoiceCounter: 1,
     };
 
@@ -461,26 +457,10 @@
             { dni: '78945612', firstName: 'Carlos', lastName: 'Sánchez', avatar: 'CS' },
             { dni: '12345678', firstName: 'Ana', lastName: 'Torres', avatar: 'AT' },
         ];
-
-        AppState.invoices = [
-            { id: 1, invoice_number: 'F001-0001', clientRuc: '20100055237', clientName: 'Claro Perú', currency: 'PEN', amount: 2500, status: 'Pagada', isExport: false, date: '2025-06-15' },
-            { id: 2, invoice_number: 'F001-0002', clientRuc: '20546157518', clientName: 'Constructora ABC', currency: 'USD', amount: 5500, status: 'Pendiente', isExport: true, date: '2025-06-20' },
-            { id: 3, invoice_number: 'F001-0003', clientRuc: '20100129195', clientName: 'Supermercados Peruanos S.A.', currency: 'PEN', amount: 1800, status: 'Pendiente', isExport: false, date: '2025-07-01' },
-            { id: 4, invoice_number: 'F001-0004', clientRuc: '20601234567', clientName: 'Tech Solutions SAC', currency: 'PEN', amount: 3200, status: 'Pagada', isExport: false, date: '2025-07-02' },
-        ];
-        AppState.invoiceCounter = 5;
-
-        AppState.expenses = [
-            { description: 'Alquiler de Oficina', amount: 3500, date: '2025-07-01' },
-            { description: 'Planilla de Sueldos', amount: 15000, date: '2025-06-30' },
-            { description: 'Pago a Proveedores', amount: 4200, date: '2025-06-25' },
-        ];
-
-        AppState.timeEntries = [
-            { dni: '48756231', name: 'Juan Pérez García', avatar: 'JP', entryTime: '08:05', exitTime: '18:32', status: 'Completo' },
-            { dni: '71234567', name: 'María Rodríguez', avatar: 'MR', entryTime: '09:00', exitTime: '19:01', status: 'Completo' },
-            { dni: '78945612', name: 'Carlos Sánchez', avatar: 'CS', entryTime: '08:15', exitTime: '--:--', status: 'En jornada' },
-        ];
+        
+        AppState.invoices = [];
+        AppState.timeEntries = [];
+        AppState.invoiceCounter = 1;
     }
 
 
@@ -554,12 +534,10 @@
     function renderDashboard() {
         const totalIncome = AppState.invoices.filter(inv => inv.status === 'Pagada').reduce((sum, inv) => sum + (inv.currency === 'USD' ? inv.amount * 3.75 : inv.amount), 0);
         const pendingInvoices = AppState.invoices.filter(inv => inv.status === 'Pendiente').length;
-        const totalExpenses = AppState.expenses.reduce((sum, exp) => sum + exp.amount, 0);
-        const netBalance = totalIncome - totalExpenses;
+        const netBalance = totalIncome; 
 
         document.getElementById('totalIncome').textContent = `S/ ${totalIncome.toFixed(2)}`;
         document.getElementById('pendingInvoices').textContent = pendingInvoices;
-        document.getElementById('totalExpenses').textContent = `S/ ${totalExpenses.toFixed(2)}`;
         document.getElementById('netBalance').textContent = `S/ ${netBalance.toFixed(2)}`;
     }
 
@@ -568,6 +546,13 @@
         const allTbody = document.querySelector('#allInvoicesTable tbody');
         recentTbody.innerHTML = '';
         allTbody.innerHTML = '';
+
+        if (AppState.invoices.length === 0) {
+            const emptyRow = `<tr><td colspan="6" style="text-align: center;">No hay facturas registradas.</td></tr>`;
+            recentTbody.innerHTML = emptyRow.replace('colspan="6"', 'colspan="4"');
+            allTbody.innerHTML = emptyRow;
+            return;
+        }
 
         const sortedInvoices = [...AppState.invoices].sort((a, b) => new Date(b.date) - new Date(a.date));
 
@@ -582,6 +567,7 @@
                     <td class="hide-mobile">${inv.clientRuc}</td>
                     <td>${symbol} ${total.toFixed(2)}</td>
                     <td><span class="badge badge-${statusClass}">${inv.status}</span></td>
+                    <td><button class="btn btn-danger btn-sm" onclick="deleteItem('invoice', ${inv.id})">Borrar</button></td>
                 </tr>`;
             
             if (index < 5) {
@@ -602,13 +588,17 @@
         const tableBody = document.querySelector('#employeesTable tbody');
         tableBody.innerHTML = '';
         AppState.employees.forEach(emp => {
-            tableBody.innerHTML += `<tr><td>${emp.dni}</td><td>${emp.firstName} ${emp.lastName}</td><td><span class="badge badge-success">Activo</span></td></tr>`;
+            tableBody.innerHTML += `<tr><td>${emp.dni}</td><td>${emp.firstName} ${emp.lastName}</td><td><span class="badge badge-success">Activo</span></td><td><button class="btn btn-danger btn-sm" onclick="deleteItem('employee', '${emp.dni}')">Borrar</button></td></tr>`;
         });
     }
 
     function renderTimeTracking() {
         const tableBody = document.querySelector('#timeTrackingTable tbody');
         tableBody.innerHTML = '';
+        if (AppState.timeEntries.length === 0) {
+            tableBody.innerHTML = `<tr><td colspan="5" style="text-align: center;">No hay marcaciones registradas.</td></tr>`;
+            return;
+        }
         AppState.timeEntries.forEach(entry => {
             const statusClass = entry.status === 'Completo' ? 'success' : 'warning';
             tableBody.innerHTML += `
@@ -622,23 +612,30 @@
                     <td>${entry.entryTime}</td>
                     <td>${entry.exitTime}</td>
                     <td><span class="badge badge-${statusClass}">${entry.status}</span></td>
+                    <td><button class="btn btn-danger btn-sm" onclick="deleteItem('timeEntry', ${entry.id})">Borrar</button></td>
                 </tr>`;
         });
     }
     
     function renderAccounting() {
-        const totalIncome = AppState.invoices.filter(inv => inv.status === 'Pagada').reduce((sum, inv) => sum + (inv.currency === 'USD' ? inv.amount * 3.75 : inv.amount), 0);
-        const totalReceivables = AppState.invoices.filter(inv => inv.status === 'Pendiente').reduce((sum, inv) => sum + (inv.currency === 'USD' ? inv.amount * 3.75 : inv.amount), 0);
-        const igvPayable = AppState.invoices.filter(inv => !inv.isExport).reduce((sum, inv) => sum + (inv.amount * CONFIG.IGV_RATE), 0);
-        const totalAssets = totalIncome + totalReceivables + 8450;
-        const totalLiabilities = 5600 + igvPayable;
-        const retainedEarnings = totalIncome - AppState.expenses.reduce((sum, exp) => sum + exp.amount, 0);
-        const totalEquity = 50000 + retainedEarnings;
+        // Mockup data for financial statement
+        const cash = 12500.00;
+        const receivables = 7800.00;
+        const inventory = 4200.00;
+        const totalAssets = cash + receivables + inventory;
         
-        document.getElementById('cashBalance').textContent = `S/ ${totalIncome.toFixed(2)}`;
-        document.getElementById('receivables').textContent = `S/ ${totalReceivables.toFixed(2)}`;
+        const payables = 3100.00;
+        const taxes = 1250.00;
+        const totalLiabilities = payables + taxes;
+        
+        const capital = 15000.00;
+        const retainedEarnings = totalAssets - totalLiabilities - capital;
+        const totalEquity = capital + retainedEarnings;
+        
+        document.getElementById('cashBalance').textContent = `S/ ${cash.toFixed(2)}`;
+        document.getElementById('receivables').textContent = `S/ ${receivables.toFixed(2)}`;
         document.getElementById('totalAssets').textContent = `S/ ${totalAssets.toFixed(2)}`;
-        document.getElementById('taxesPayable').textContent = `S/ ${igvPayable.toFixed(2)}`;
+        document.getElementById('taxesPayable').textContent = `S/ ${taxes.toFixed(2)}`;
         document.getElementById('totalLiabilities').textContent = `S/ ${totalLiabilities.toFixed(2)}`;
         document.getElementById('retainedEarnings').textContent = `S/ ${retainedEarnings.toFixed(2)}`;
         document.getElementById('totalEquity').textContent = `S/ ${totalEquity.toFixed(2)}`;
@@ -688,14 +685,26 @@
     async function saveInvoice(event) {
         event.preventDefault();
         const form = event.target;
-        const total = calculateTotal(true);
+        const newInvoice = {
+            id: Date.now(),
+            invoice_number: `F001-${String(AppState.invoiceCounter++).padStart(4, '0')}`,
+            clientRuc: form.clientRuc.value,
+            clientName: form.clientName.value,
+            currency: form.currency.value,
+            amount: parseFloat(form.amount.value),
+            status: 'Pendiente',
+            isExport: form.isExportInvoice.checked,
+            date: new Date().toISOString().split('T')[0],
+            file: form.invoiceFile.files[0] ? form.invoiceFile.files[0].name : null
+        };
+
+        AppState.invoices.push(newInvoice);
         showToast('✅ Factura guardada correctamente.', 'success');
         closeModal('newInvoice');
         form.reset();
         handleCurrencyChange('PEN');
         renderInvoices();
         renderDashboard();
-        renderAccounting();
     }
     
     async function savePayment(event) {
@@ -717,6 +726,7 @@
         }
 
         const newEntry = {
+            id: Date.now(),
             dni: employee.dni,
             name: `${employee.firstName} ${employee.lastName}`,
             avatar: employee.avatar,
@@ -796,85 +806,20 @@
         if(modal) modal.classList.remove('active');
     }
     
-    // ========================================
-    // Gemini API Integration
-    // ========================================
-    async function callGeminiAPI(prompt, buttonElement) {
-        const originalText = buttonElement.innerHTML;
-        buttonElement.innerHTML = `<div class="loading-spinner" style="width: 18px; height: 18px; border-width: 2px;"></div>`;
-        buttonElement.disabled = true;
-
-        let chatHistory = [{ role: "user", parts: [{ text: prompt }] }];
-        const payload = { contents: chatHistory };
-        const apiKey = ""; // Provided by the environment
-        const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash:generateContent?key=${apiKey}`;
-
-        try {
-            const response = await fetch(apiUrl, {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify(payload)
-            });
-            if (!response.ok) {
-                throw new Error(`API Error: ${response.statusText}`);
-            }
-            const result = await response.json();
-            if (result.candidates && result.candidates.length > 0) {
-                return result.candidates[0].content.parts[0].text;
-            } else {
-                throw new Error("No se recibió una respuesta válida de la IA.");
-            }
-        } catch (error) {
-            console.error("Error calling Gemini API:", error);
-            showToast(error.message, 'error');
-            return null;
-        } finally {
-            buttonElement.innerHTML = originalText;
-            buttonElement.disabled = false;
+    function downloadInvoice(invoiceId) {
+        const invoice = AppState.invoices.find(inv => inv.id === invoiceId);
+        if (invoice && invoice.file) {
+             showToast(`Simulando descarga de: ${invoice.file}...`, 'info');
+        } else {
+            showToast(`Factura #${invoice.invoice_number} no tiene archivo adjunto.`, 'warning');
         }
     }
-
-    async function generateInvoiceDescription(buttonElement) {
-        const form = document.getElementById('invoiceForm');
-        const clientName = form.clientName.value;
-        const amount = form.amount.value;
-        const currency = form.currency.value;
-
-        if (!clientName || !amount) {
-            showToast("Por favor, ingrese el cliente y el monto primero.", "warning");
-            return;
-        }
-
-        const prompt = `Genera una descripción corta y profesional para una factura de servicios de consultoría tecnológica para el cliente "${clientName}" por un monto de ${amount} ${currency}. Sé conciso.`;
-        const suggestion = await callGeminiAPI(prompt, buttonElement);
-        
-        if (suggestion) {
-            form.description.value = suggestion.trim();
+    
+    function handleFileUpload(files) {
+        for (const file of files) {
+            showToast(`Archivo "${file.name}" subido.`, 'success');
         }
     }
-
-    async function analyzeFinancials(buttonElement) {
-        const resultDiv = document.getElementById('financialAnalysisResult');
-        const prompt = `Eres un asesor financiero para PYMEs en Perú. Analiza el siguiente estado financiero y proporciona un resumen claro y accionable en español.
-        - Total de Activos: ${document.getElementById('totalAssets').textContent}
-        - Total de Pasivos: ${document.getElementById('totalLiabilities').textContent}
-        - Patrimonio: ${document.getElementById('totalEquity').textContent}
-        - Ingresos del Mes: ${document.getElementById('totalIncome').textContent}
-        - Egresos del Mes: ${document.getElementById('totalExpenses').textContent}
-        
-        En tu análisis, destaca una fortaleza clave y una recomendación principal para mejorar la salud financiera. Formatea la respuesta con saltos de línea y usa ** para el texto en negrita.`;
-
-        const analysis = await callGeminiAPI(prompt, buttonElement);
-
-        if (analysis) {
-            const formattedAnalysis = analysis
-                .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-                .replace(/\n/g, '<br>');
-            resultDiv.innerHTML = formattedAnalysis;
-            resultDiv.classList.remove('hidden');
-        }
-    }
-
 
     // ========================================
     // Eventos y Utilidades
@@ -933,6 +878,84 @@
             setTimeout(() => toast.remove(), 300);
         }, 3000);
     }
+    
+    function deleteItem(type, id) {
+        if (!confirm('¿Estás seguro de que deseas eliminar este registro?')) {
+            return;
+        }
+
+        let itemArray;
+        let renderFunctions = [];
+        let idKey = (type === 'employee') ? 'dni' : 'id';
+
+        switch (type) {
+            case 'invoice':
+                itemArray = AppState.invoices;
+                renderFunctions = [renderInvoices, renderDashboard];
+                break;
+            case 'employee':
+                itemArray = AppState.employees;
+                renderFunctions = [renderEmployees, renderEmployeeOptions];
+                break;
+            case 'timeEntry':
+                itemArray = AppState.timeEntries;
+                renderFunctions = [renderTimeTracking];
+                break;
+            default:
+                showToast('Tipo de dato no válido para eliminar.', 'error');
+                return;
+        }
+
+        const index = itemArray.findIndex(item => String(item[idKey]) === String(id));
+        
+        if (index > -1) {
+            itemArray.splice(index, 1);
+            renderFunctions.forEach(fn => fn());
+            showToast('Registro eliminado correctamente.', 'success');
+        } else {
+            showToast('No se pudo encontrar el registro para eliminar.', 'error');
+        }
+    }
+
+    function downloadFullBackup() {
+        showToast('📥 Generando respaldo completo...', 'info');
+
+        const toCsv = (data, headers) => {
+            const headerRow = headers.join(',') + '\n';
+            const dataRows = data.map(row => 
+                headers.map(header => {
+                    let cell = row[header] === null || row[header] === undefined ? '' : `"${String(row[header]).replace(/"/g, '""')}"`;
+                    return cell;
+                }).join(',')
+            ).join('\n');
+            return headerRow + dataRows;
+        };
+
+        let fullCsv = 'SECCIÓN: FACTURAS\n';
+        const invoiceHeaders = ['id', 'invoice_number', 'clientRuc', 'clientName', 'currency', 'amount', 'status', 'isExport', 'date'];
+        fullCsv += toCsv(AppState.invoices, invoiceHeaders) + '\n\n';
+
+        fullCsv += 'SECCIÓN: EMPLEADOS\n';
+        const employeeHeaders = ['dni', 'firstName', 'lastName'];
+        fullCsv += toCsv(AppState.employees, employeeHeaders) + '\n\n';
+
+        fullCsv += 'SECCIÓN: REGISTRO DE ASISTENCIA\n';
+        const timeEntryHeaders = ['id', 'dni', 'name', 'type', 'datetime'];
+        fullCsv += toCsv(AppState.timeEntries, timeEntryHeaders) + '\n\n';
+
+        const blob = new Blob([fullCsv], { type: 'text/csv;charset=utf-8;' });
+        const link = document.createElement("a");
+        const url = URL.createObjectURL(blob);
+        link.setAttribute("href", url);
+        link.setAttribute("download", `tecsitel_respaldo_completo_${new Date().toISOString().split('T')[0]}.csv`);
+        link.style.visibility = 'hidden';
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        
+        showToast('✅ Respaldo descargado.', 'success');
+    }
+
     </script>
 </body>
 </html>
